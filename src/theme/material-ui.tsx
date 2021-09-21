@@ -1,13 +1,9 @@
 import React from 'react';
 import { createTheme, SimplePaletteColorOptions, ThemeProvider } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import styled from 'styled-components';
 
-import * as Button from '@material-ui/core/Button';
-import * as CircularProgress from '@material-ui/core/CircularProgress';
-import * as colors from '@material-ui/core/colors';
-import * as Typography from '@material-ui/core/Typography';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-export { colors };
+export { default as colors } from '@material-ui/core/styles';
 export * from '@material-ui/core/styles';
 
 export { default as Accordion } from '@material-ui/core/Accordion';
@@ -34,22 +30,8 @@ export * from '@material-ui/core/AppBar';
 export { default as AutoComplete } from '@material-ui/lab/Autocomplete';
 export * from '@material-ui/lab/Autocomplete';
 
-interface AvatarProps extends React.ComponentProps<typeof Avatar.default> {
-  size?: number;
-}
-
-export const Avatar = ({ size, ...rest }:  AvatarProps) => {
-  return (
-    <Avatar.default
-      {...rest}
-      style={{
-        width: size,
-        height: size,
-        ...rest.style
-      }}
-    />
-  );
-};
+export { default as Avatar } from '@material-ui/core/Avatar';
+export * from '@material-ui/core/Avatar';
 
 export { default as Backdrop } from '@material-ui/core/Backdrop';
 export * from '@material-ui/core/Backdrop';
@@ -69,6 +51,7 @@ export * from '@material-ui/core/Box';
 export { default as Breadcrumbs } from '@material-ui/core/Breadcrumbs';
 export * from '@material-ui/core/Breadcrumbs';
 
+export { default as Button } from '@material-ui/core/Button';
 export * from '@material-ui/core/Button';
 
 export { default as ButtonBase } from '@material-ui/core/ButtonBase';
@@ -112,6 +95,9 @@ export * from '@material-ui/core/Collapse';
 
 export { default as Container } from '@material-ui/core/Container';
 export * from '@material-ui/core/Container';
+
+export { default as createTheme } from '@material-ui/core/styles';
+export * from '@material-ui/core/styles';
 
 export { default as CssBaseline } from '@material-ui/core/CssBaseline';
 export * from '@material-ui/core/CssBaseline';
@@ -295,6 +281,9 @@ export * from '@material-ui/core/RootRef';
 export { default as Select } from '@material-ui/core/Select';
 export * from '@material-ui/core/Select';
 
+export { default as SimplePaletteColorOptions } from '@material-ui/core/styles';
+export * from '@material-ui/core/styles';
+
 export { default as Slide } from '@material-ui/core/Slide';
 export * from '@material-ui/core/Slide';
 
@@ -384,45 +373,8 @@ export * from '@material-ui/core/Toolbar';
 
 export { default as Tooltip } from '@material-ui/core/Tooltip';
 export * from '@material-ui/core/Tooltip';
-interface TypographyProps
-  extends Omit<React.ComponentProps<typeof Typography.default>, 'color'> {
-  fontWeight?: number | string;
-  uppercase?: boolean;
-  color?:
-    | 'inherit'
-    | 'initial'
-    | 'primary'
-    | 'secondary'
-    | 'textPrimary'
-    | 'textSecondary'
-    | 'error'
-    | string;
-  fontSize?: FontSize;
-  component?: React.ComponentType | string;
-}
 
-const colorPallette = ['primary', 'secondary', 'textPrimary', 'textSecondary', 'error'] as const;
-
-const isColorPalletteColor = (color: any): color is typeof colorPallette[number] => {
-  return colorPallette.includes(color);
-};
-
-// For convenience, since the typography doesn't accept the fontweight prop for some reason
-export const Typography = (props:  TypographyProps) => {
-  return (
-    <Typography.default
-      {...props}
-      color={isColorPalletteColor(props.color) ? props.color : undefined}
-      style={{
-        textTransform: props.uppercase ? 'uppercase' : undefined,
-        fontWeight: props.fontWeight as number,
-        fontSize: props.fontSize,
-        color: !isColorPalletteColor(props.color) ? props.color : undefined,
-        ...props.style
-      }}
-    />
-  );
-};
+export { default as Typography } from '@material-ui/core/Typography';
 export * from '@material-ui/core/Typography';
 
 export { default as useScrollTrigger } from '@material-ui/core/useScrollTrigger';
@@ -437,12 +389,12 @@ export * from '@material-ui/core/withWidth';
 export { default as Zoom } from '@material-ui/core/Zoom';
 export * from '@material-ui/core/Zoom';
 
-const createColorOptions = (main: string, contrastText?: string): SimplePaletteColorOptions => ({
-  main,
-  contrastText
-});
+const 
+const coreTheme = {
+  
+};
 
-export const theme = createTheme({
+export const lightTheme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -466,7 +418,6 @@ export const theme = createTheme({
     }
   },
   overrides: {
-    // There is an issue currently of the input width bleeding out of variant='outlined' border - this fixes the issue
      InputBase: {
       input: {
         minHeight: 53.63,
@@ -521,13 +472,11 @@ export const theme = createTheme({
 });
 
 export type Theme = typeof theme;
-
-export const ThemeProvider: React.FC = ({ children }) => (
+  
+export const MuiThemeProvider = React.FC = ({ children }) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
-
-export const useMediaQuery = (arg: (theme: Theme) => string) =>
-useMediaQuery<typeof theme>(arg);
+export { default as useMediaQuery } from '@material-ui/core/useMediaQuery';
 export * from '@material-ui/core/useMediaQuery';
 
 export const CursorBox = styled(Box)`
