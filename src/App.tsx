@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import { colorObj, darkColor, lightColor } from './modules/styles/colors';
+import { COLOR_OBJ, DARK_COLOR, LIGHT_COLOR } from './modules/styles/colors';
 import { FONT_FAMILY_SERIF } from './modules/styles/variables';
 import './App.scss';
 
@@ -21,31 +21,31 @@ function App() {
     palette: {
       type: toggleDarkMode ? 'dark' : 'light',
       primary: {
-        contrastText: colorObj.colorContrastTextPrimary,
-        dark: colorObj.colorDark,
-        light: colorObj.colorLight,
-        main: colorObj.colorMainPrimary
+        contrastText: COLOR_OBJ.colorContrastTextPrimary,
+        dark: COLOR_OBJ.colorDark,
+        light: COLOR_OBJ.colorLight,
+        main: COLOR_OBJ.colorMainPrimary
       },
       secondary: {
-        contrastText: colorObj.colorContrastTextSecondary,
-        main: colorObj.colorMainSecondary
+        contrastText: COLOR_OBJ.colorContrastTextSecondary,
+        main: COLOR_OBJ.colorMainSecondary
       },
       error: {
-        main: colorObj.red
+        main: COLOR_OBJ.red
       },
       success: {
-        main: colorObj.green
+        main: COLOR_OBJ.green
       },
       warning: {
-        main: colorObj.yellow
+        main: COLOR_OBJ.yellow
       },
       info: {
-        main: colorObj.lightBlue
+        main: COLOR_OBJ.lightBlue
       },
       text: {
-        primary: toggleDarkMode ? darkColor.text : lightColor.text,
-        secondary: lightColor.text,
-        disabled: colorObj.lightGray
+        primary: toggleDarkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
+        secondary: LIGHT_COLOR.text,
+        disabled: COLOR_OBJ.lightGray
       }
     },
     typography: {
@@ -56,37 +56,37 @@ function App() {
       fontWeightRegular: 300,
       fontWeightLight: 100,
       button: {
-        color: colorObj.white,
+        color: COLOR_OBJ.white,
         textTransform: 'capitalize'
       },
       caption: {
-        color: toggleDarkMode ? darkColor.color : lightColor.color,
+        color: toggleDarkMode ? DARK_COLOR.color : LIGHT_COLOR.color,
         fontSize: '.6rem'
       },
       h1: {
-        color: toggleDarkMode ? darkColor.largeHeading : lightColor.largeHeading,
+        color: toggleDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
         fontSize: '3.25rem'
       },
       h3: {
-        color: toggleDarkMode ? darkColor.pageHeading : lightColor.pageHeading,
+        color: toggleDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
         fontSize: '1.7rem'
       },
       h4: {
-        color: toggleDarkMode ? darkColor.subHeading : lightColor.subHeading,
+        color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
         fontSize: '1.25rem',
         fontWeight: 100
       },
       h6: {
-        color: toggleDarkMode ? darkColor.subHeading : lightColor.subHeading,
+        color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
         fontSize: '0.75rem',
         textTransform: 'uppercase'
       },
       subtitle1: {
-        color: toggleDarkMode ? darkColor.pageHeading : lightColor.pageHeading,
+        color: toggleDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
         fontSize: '1.7rem'
       },
       subtitle2: {
-        color: toggleDarkMode ? darkColor.subHeading : lightColor.subHeading,
+        color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
         fontSize: '1.25rem',
         fontWeight: 100
       }
