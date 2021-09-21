@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { colorObj, darkColor, lightColor } from './modules/styles/colors';
 
+import { colorObj, darkColor, lightColor } from './modules/styles/colors';
 import './App.scss';
 
 function App() {
