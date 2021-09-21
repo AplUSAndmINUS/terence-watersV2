@@ -1,5 +1,3 @@
-import React from 'react';
-import { createTheme, SimplePaletteColorOptions, ThemeProvider } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import styled from 'styled-components';
 
@@ -389,10 +387,12 @@ export * from '@material-ui/core/withWidth';
 export { default as Zoom } from '@material-ui/core/Zoom';
 export * from '@material-ui/core/Zoom';
 
-const 
-const coreTheme = {
-  
-};
+export { default as useMediaQuery } from '@material-ui/core/useMediaQuery';
+export * from '@material-ui/core/useMediaQuery';
+
+export const CursorBox = styled(Box)`
+  cursor: pointer;
+`;
 
 export const lightTheme = createTheme({
   breakpoints: {
@@ -471,14 +471,4 @@ export const lightTheme = createTheme({
   }
 });
 
-export type Theme = typeof theme;
-  
-export const MuiThemeProvider = React.FC = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
-export { default as useMediaQuery } from '@material-ui/core/useMediaQuery';
-export * from '@material-ui/core/useMediaQuery';
 
-export const CursorBox = styled(Box)`
-  cursor: pointer;
-`;
