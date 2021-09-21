@@ -1,15 +1,24 @@
 export const colorObj = {
   black: '#000',
   white: '#FFF',
-  accentColorLight: '#445F7E',
-  accentColorDark: '#5B799B'
+  red: '#E22C35',
+  green: '#75A201',
+  yellow: '#FEE44D',
+  lightBlue: '#4379AB',
+  lightGray: '#ABABAB',
+  colorLight: '#445F7E',
+  colorDark: '#5B799B',
+  colorMainPrimary: '#445F7E',
+  colorContrastTextPrimary: '#FFF',
+  colorMainSecondary: '#5B799B',
+  colorContrastTextSecondary: '#212121',
 }
 
 export const darkColor = {
   text: '#FFF',
-  accentColor: colorObj.accentColorDark,
-  largeHeading: colorObj.accentColorDark,
-  pageHeading: colorObj.accentColorDark,
+  color: colorObj.colorDark,
+  largeHeading: colorObj.colorDark,
+  pageHeading: colorObj.colorDark,
   subHeading: '#FFF',
   background: 'radial-gradient(rgba(83,83,83,1) 0%, rgba(56,56,56,1) 64.82%, rgba(92,92,92,1) 100%)',
   mediaBackground: '#5C5C5C',
@@ -18,29 +27,29 @@ export const darkColor = {
   mediaCardSubheading: '#E3E3E3',
   mediaFilterButton: '#5B799B',
   buttonPrimary: '#5B799B',
-  buttonSecondary: '#5B799B',
+  buttonSecondary: '#4379AB',
   textFieldBackground: '#748BA5',
   textFieldText: '#FFF',
-  menuText: colorObj.accentColorDark,
-  menuIcon: colorObj.accentColorDark
+  menuText: colorObj.colorDark,
+  menuIcon: colorObj.colorDark
 }
 
 export const lightColor = {
-  text: '#383838',
-  accentColor: colorObj.accentColorLight,
-  largeHeading: colorObj.accentColorLight,
-  pageHeading: colorObj.accentColorLight,
-  subHeading: '#383838',
+  text: '#333',
+  color: colorObj.colorLight,
+  largeHeading: colorObj.colorLight,
+  pageHeading: colorObj.colorLight,
+  subHeading: '#333',
   background: 'radial-gradient(rgba(255,255,255,1) 0%, rgba(244,244,244,1) 65.52%, rgba(178,177,177,0.22) 100%)',
   mediaBackground: '#FFF',
   mediaTextBackground: '#FFF',
-  mediaCardHeading: '#445F7E',
+  mediaCardHeading: colorObj.colorLight,
   mediaCardSubheading: '#748BA5',
-  mediaFilterButton: '#445F7E',
+  mediaFilterButton: colorObj.colorLight,
   buttonPrimary: '#445F7E',
   buttonSecondary: '#445F7E',
   textFieldBackground: '#748BA5',
   textFieldText: '#FFF',
-  menuText: colorObj.accentColorLight,
-  menuIcon: colorObj.accentColorLight
+  menuText: colorObj.colorLight,
+  menuIcon: colorObj.colorLight
 }
