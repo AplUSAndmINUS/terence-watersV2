@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import { colorObj, darkColor, lightColor } from './modules/styles/colors';
+import { FONT_FAMILY_SERIF } from './modules/styles/variables';
 import './App.scss';
 
 function App() {
   const [toggleDarkMode, setToggleDarkMode] = useState(false);
-  const fontFamily = `${"'Proxima Nova', 'Roboto', 'Helvetica Neue', 'Arial', 'Verdana', 'sans-serif'"}`;
 
   const theme = createTheme({
     breakpoints: {
@@ -49,10 +49,10 @@ function App() {
       }
     },
     typography: {
-      fontFamily: fontFamily,
+      fontFamily: FONT_FAMILY_SERIF,
       fontSize: 14,
-      fontWeightBold: 700,
-      fontWeightMedium: 500,
+      fontWeightBold: 800,
+      fontWeightMedium: 400,
       fontWeightRegular: 300,
       fontWeightLight: 100,
       button: {
