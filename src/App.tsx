@@ -44,15 +44,15 @@ function App() {
       },
       text: {
         primary: toggleDarkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
-        secondary: LIGHT_COLOR.text,
+        secondary: toggleDarkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
         disabled: COLOR_OBJ.lightGray
       }
     },
     typography: {
       fontFamily: FONT_FAMILY_SERIF,
       fontSize: 14,
-      fontWeightBold: 800,
-      fontWeightMedium: 400,
+      fontWeightBold: 700,
+      fontWeightMedium: 500,
       fontWeightRegular: 300,
       fontWeightLight: 100,
       button: {
@@ -61,7 +61,7 @@ function App() {
       },
       caption: {
         color: toggleDarkMode ? DARK_COLOR.color : LIGHT_COLOR.color,
-        fontSize: '.6rem'
+        fontSize: '0.6rem'
       },
       h1: {
         color: toggleDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
