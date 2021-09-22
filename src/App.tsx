@@ -57,7 +57,7 @@ function App() {
       fontWeightLight: FONT_WEIGHT.light,
       button: {
         color: COLOR_OBJ.white,
-        textTransform: 'capitalize',
+        textTransform: 'lowercase',
         fontFamily: 'Roboto, sans-serif'
       },
       caption: {
@@ -67,28 +67,42 @@ function App() {
         fontFamily: 'Roboto, sans-serif'
       },
       h1: {
+        color: toggleDarkMode ? COLOR_OBJ.white : COLOR_OBJ.black,
+        fontSize: FONT_SIZE.title,
+        fontWeight: FONT_WEIGHT.light,
+        fontFamily: FONT_FAMILY_SERIF,
+        lineHeight: '48px',
+        textTransform: 'lowercase'
+      },
+      h2: {
         color: toggleDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
         fontSize: FONT_SIZE.heading,
         fontWeight: FONT_WEIGHT.bold,
         fontFamily: 'Proxima Nova, sans-serif',
-      },
-      h2: {
-        color: toggleDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
-        fontSize: FONT_SIZE.pageTitle,
-        fontWeight: FONT_WEIGHT.regular,
-        fontFamily: 'Roboto, sans-serif',
+        letterSpacing: '-0.2px',
+        lineHeight: '40px',
+        textTransform: 'lowercase'
       },
       h3: {
+        color: toggleDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
+        fontSize: FONT_SIZE.sectionTitle,
+        fontWeight: FONT_WEIGHT.regular,
+        fontFamily: 'Roboto, sans-serif',
+        textTransform: 'lowercase'
+      },
+      h4: {
         color: toggleDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
         fontSize: FONT_SIZE.subheading,
         fontWeight: FONT_WEIGHT.regular,
-        fontFamily: FONT_FAMILY_SERIF
+        fontFamily: FONT_FAMILY_SERIF,
+        textTransform: 'lowercase'
       },
-      h4: {
+      h5: {
         color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
         fontSize: FONT_SIZE.tertiary,
         fontWeight: FONT_WEIGHT.light,
-        fontFamily: FONT_FAMILY_SERIF
+        fontFamily: FONT_FAMILY_SERIF,
+        textTransform: 'lowercase'
       },
       h6: {
         color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
@@ -100,13 +114,15 @@ function App() {
         color: toggleDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
         fontSize: FONT_SIZE.subheading,
         fontWeight: FONT_WEIGHT.regular,
-        fontFamily: FONT_FAMILY_SERIF
+        fontFamily: FONT_FAMILY_SERIF,
+        textTransform: 'lowercase'
       },
       subtitle2: {
         color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
         fontSize: FONT_SIZE.tertiary,
         fontWeight: FONT_WEIGHT.light,
-        fontFamily: FONT_FAMILY_SERIF
+        fontFamily: FONT_FAMILY_SERIF,
+        textTransform: 'lowercase'
       }
     }
   });

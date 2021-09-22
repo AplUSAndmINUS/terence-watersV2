@@ -25,9 +25,10 @@ export const FONT_SIZE = {
   body: 14,
   caption: '0.6rem',
   heading: '3.25rem',
-  pageTitle: '2.5rem',
+  sectionTitle: '2.5rem',
   subheading: '1.7rem',
   tertiary: '1.25rem',
+  title: '3rem',
   quaternary: '0.75rem',
 }
 
