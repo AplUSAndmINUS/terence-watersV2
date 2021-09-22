@@ -18,8 +18,25 @@ export const ELEVATION = {
   el5: createElevation(5)
 } as const;
 
-export const FONT_FAMILY_SERIF = `${"'Proxima Nova', 'Roboto', 'Open Sans', 'Helvetica Neue', 'Arial', 'Verdana', 'sans-serif'"}`;
+export const FONT_FAMILY_SERIF = `${"'Open Sans', 'Helvetica Neue', 'Open Sans', 'Arial', 'Verdana', 'sans-serif'"}`;
 export const FONT_FAMILY_MONO = `${"'Roboto Mono', monospace"}`;
+
+export const FONT_SIZE = {
+  body: 14,
+  caption: '0.6rem',
+  heading: '3.25rem',
+  pageTitle: '2.5rem',
+  subheading: '1.7rem',
+  tertiary: '1.25rem',
+  quaternary: '0.75rem',
+}
+
+export const FONT_WEIGHT = {
+  light: 100,
+  regular: 300,
+  medium: 500,
+  bold: 700
+} as const;
 
 export const ICON_SIZE = {
   small: 16,

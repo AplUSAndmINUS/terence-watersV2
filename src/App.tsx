@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import { COLOR_OBJ, DARK_COLOR, LIGHT_COLOR } from './modules/styles/colors';
-import { FONT_FAMILY_SERIF } from './modules/styles/variables';
+import { FONT_FAMILY_SERIF, FONT_SIZE, FONT_WEIGHT } from './modules/styles/variables';
 import './App.scss';
 
 function App() {
@@ -50,45 +50,63 @@ function App() {
     },
     typography: {
       fontFamily: FONT_FAMILY_SERIF,
-      fontSize: 14,
-      fontWeightBold: 700,
-      fontWeightMedium: 500,
-      fontWeightRegular: 300,
-      fontWeightLight: 100,
+      fontSize: FONT_SIZE.body,
+      fontWeightBold: FONT_WEIGHT.bold,
+      fontWeightMedium: FONT_WEIGHT.medium,
+      fontWeightRegular: FONT_WEIGHT.regular,
+      fontWeightLight: FONT_WEIGHT.light,
       button: {
         color: COLOR_OBJ.white,
-        textTransform: 'capitalize'
+        textTransform: 'capitalize',
+        fontFamily: 'Roboto, sans-serif'
       },
       caption: {
         color: toggleDarkMode ? DARK_COLOR.color : LIGHT_COLOR.color,
-        fontSize: '0.6rem'
+        fontSize: FONT_SIZE.caption,
+        fontWeight: FONT_WEIGHT.regular,
+        fontFamily: 'Roboto, sans-serif'
       },
       h1: {
         color: toggleDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
-        fontSize: '3.25rem'
+        fontSize: FONT_SIZE.heading,
+        fontWeight: FONT_WEIGHT.bold,
+        fontFamily: 'Proxima Nova, sans-serif',
+      },
+      h2: {
+        color: toggleDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
+        fontSize: FONT_SIZE.pageTitle,
+        fontWeight: FONT_WEIGHT.regular,
+        fontFamily: 'Roboto, sans-serif',
       },
       h3: {
         color: toggleDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
-        fontSize: '1.7rem'
+        fontSize: FONT_SIZE.subheading,
+        fontWeight: FONT_WEIGHT.regular,
+        fontFamily: FONT_FAMILY_SERIF
       },
       h4: {
         color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
-        fontSize: '1.25rem',
-        fontWeight: 100
+        fontSize: FONT_SIZE.tertiary,
+        fontWeight: FONT_WEIGHT.light,
+        fontFamily: FONT_FAMILY_SERIF
       },
       h6: {
         color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
-        fontSize: '0.75rem',
-        textTransform: 'uppercase'
+        fontSize: FONT_SIZE.quaternary,
+        textTransform: 'uppercase',
+        fontFamily: FONT_FAMILY_SERIF
       },
       subtitle1: {
         color: toggleDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
-        fontSize: '1.7rem'
+        fontSize: FONT_SIZE.subheading,
+        fontWeight: FONT_WEIGHT.regular,
+        fontFamily: FONT_FAMILY_SERIF
       },
       subtitle2: {
         color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
-        fontSize: '1.25rem',
-        fontWeight: 100
+        fontSize: FONT_SIZE.tertiary,
+        fontWeight: FONT_WEIGHT.light,
+        fontFamily: FONT_FAMILY_SERIF
       }
     }
   });
