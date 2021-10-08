@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { Container, Grid } from '@material-ui/core';
 
 import { ROUTES } from './modules/constants/routes';
 import { TWMuiThemeProvider } from './modules/styles/theming';
@@ -14,33 +15,19 @@ function App() {
 
   const Router = () => {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <header className="App-header">
-            <p>
-              Edit <code>src/App.tsx</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-            
-            {ROUTES.map(r => (
-              !r.subMenu && !r.notFound ? <Link to={r.path}>{r.componentName}</Link>
-                : null))}
+      <div className="App">
+        <BrowserRouter>
+          {ROUTES.map(r => (
+            !r.subMenu && !r.notFound ? <Link to={r.path}>{r.componentName}</Link>
+              : null))}
 
-            <Switch>
-              {ROUTES.map(r => (
-                !r.notFound ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
-              ))}
-            </Switch>
-          </header>
-        </div>
-      </BrowserRouter>
+          <Switch>
+            {ROUTES.map(r => (
+              !r.notFound ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
+            ))}
+          </Switch>
+        </BrowserRouter>
+      </div>
     )
   }
 
