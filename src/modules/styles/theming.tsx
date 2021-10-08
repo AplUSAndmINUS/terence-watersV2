@@ -5,12 +5,15 @@ import { COLOR_OBJ, DARK_COLOR, LIGHT_COLOR } from '../../modules/styles/colors'
 import { FONT_FAMILY_SERIF, FONT_SIZE, FONT_WEIGHT } from '../../modules/styles/variables';
 
 export interface ThemeProps {
-  children: React.ReactFragment;
+  children?: React.ReactFragment;
   setToggleDarkMode?: Function;
   toggleDarkMode?: boolean;
 }
 
-export const TWMuiThemeProvider = ({ children, toggleDarkMode = false }: ThemeProps) => {
+export const TWMuiThemeProvider = ({
+  children,
+  setToggleDarkMode,
+  toggleDarkMode = false }: ThemeProps) => {
 
   const theme = createTheme({
     breakpoints: {
