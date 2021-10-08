@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 import { ROUTES } from './modules/constants/routes';
 import { TWMuiThemeProvider } from './modules/styles/theming';
@@ -12,11 +12,9 @@ function App() {
     setToggleDarkMode(!toggleDarkMode);
   }
 
-  return (
-    <TWMuiThemeProvider
-      setToggleDarkMode={setToggleDarkMode}
-      toggleDarkMode={toggleDarkMode}>
-      <Router>
+  const Router = () => {
+    return (
+      <BrowserRouter>
         <div className="App">
           <header className="App-header">
             <p>
@@ -30,6 +28,7 @@ function App() {
             >
               Learn React
             </a>
+            
             {ROUTES.map(r => (
               !r.subMenu && !r.notFound ? <Link to={r.path}>{r.componentName}</Link>
                 : null))}
@@ -41,8 +40,15 @@ function App() {
             </Switch>
           </header>
         </div>
-      </Router>
-    </TWMuiThemeProvider>
+      </BrowserRouter>
+    )
+  }
+
+  return (
+    <TWMuiThemeProvider
+      children={<Router />}
+      setToggleDarkMode={setToggleDarkMode}
+      toggleDarkMode={toggleDarkMode} />
   );
 }
 

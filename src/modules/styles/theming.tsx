@@ -5,7 +5,7 @@ import { COLOR_OBJ, DARK_COLOR, LIGHT_COLOR } from '../../modules/styles/colors'
 import { FONT_FAMILY_SERIF, FONT_SIZE, FONT_WEIGHT } from '../../modules/styles/variables';
 
 export interface ThemeProps {
-  children?: React.ReactFragment;
+  children: any;
   setToggleDarkMode?: Function;
   toggleDarkMode?: boolean;
 }
