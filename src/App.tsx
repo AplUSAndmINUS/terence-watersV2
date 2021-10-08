@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
+import { ROUTES } from './modules/constants/routes';
 import { TWMuiThemeProvider } from './modules/styles/theming';
+import About from './pages/about/about';
+import NotFound from './pages/404/404';
 import './App.scss';
 
 function App() {
@@ -14,21 +18,31 @@ function App() {
     <TWMuiThemeProvider
       setToggleDarkMode={setToggleDarkMode}
       toggleDarkMode={toggleDarkMode}>
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route exact path="/about" component={About} />
+          <Route component={NotFound} />
+        </Switch>
+        <div className="App">
+          <header className="App-header">
+            <p>
+              Edit <code>src/App.tsx</code> and save to reload.
+            </p>
+            <a
+              className="App-link"
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn React
+            </a>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/NotFoundSpot">404</Link>
+          </header>
+        </div>
+      </Router>
     </TWMuiThemeProvider>
   );
 }
