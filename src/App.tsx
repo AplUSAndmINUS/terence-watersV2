@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 import { ROUTES } from './modules/constants/routes';
 import { TWMuiThemeProvider } from './modules/styles/theming';
-import About from './pages/about/about';
-import NotFound from './pages/404/404';
 import './App.scss';
 
 function App() {
