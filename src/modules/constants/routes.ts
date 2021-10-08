@@ -31,7 +31,6 @@ export const ROUTES: Routes[] = [
     component: Blog,
     componentName: 'blog',
     path: '/portfolio/blog',
-    subMenu: true
   },
   {
     component: Contact,
@@ -46,22 +45,24 @@ export const ROUTES: Routes[] = [
   {
     component: GitHub,
     componentName: 'github',
-    path: '/portfolio/github'
+    path: '/portfolio/github',
+    subMenu: true
+  },
+  {
+    component: Music,
+    componentName: 'music',
+    path: '/portfolio/music',
+    subMenu: true
+  },
+  {
+    component: Portfolio,
+    componentName: 'portfolio',
+    path: '/portfolio'
   },
   {
     component: NotFound,
     componentName: '404',
     notFound: true,
     path: '/404'
-  },
-  {
-    component: Music,
-    componentName: 'music',
-    path: '/portfolio/music'
-  },
-  {
-    component: Portfolio,
-    componentName: 'portfolio',
-    path: '/portfolio'
   },
 ]

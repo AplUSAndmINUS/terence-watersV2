@@ -19,11 +19,6 @@ function App() {
       setToggleDarkMode={setToggleDarkMode}
       toggleDarkMode={toggleDarkMode}>
       <Router>
-        <Switch>
-          <Route exact path="/" component={App} />
-          <Route exact path="/about" component={About} />
-          <Route component={NotFound} />
-        </Switch>
         <div className="App">
           <header className="App-header">
             <p>
@@ -37,9 +32,15 @@ function App() {
             >
               Learn React
             </a>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/NotFoundSpot">404</Link>
+            {ROUTES.map(r => (
+              !r.subMenu && !r.notFound ? <Link to={r.path}>{r.componentName}</Link>
+                : null))}
+
+            <Switch>
+              {ROUTES.map(r => (
+                !r.notFound ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
+              ))}
+            </Switch>
           </header>
         </div>
       </Router>
