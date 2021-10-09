@@ -71,13 +71,13 @@ function App() {
             <Box style={{ cursor: 'pointer' }} onClick={() => setShowMenu(!showMenu)}>
               <Icon component={showMenu ? MenuOpen : Menu} color="primary" fontSize="large" />
             </Box>
-            {showMenu ? (<Box>
+            {showMenu && (<Box>
               <ul>
                 {ROUTES.map(r => (
                   !r.subMenu && !r.notFound ? <li><Link className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</Link></li>
                     : null))}
               </ul>
-            </Box>) : <h1>Do not show menu</h1>}
+            </Box>)}
           </NavigationLinks>
 
           <Switch>
