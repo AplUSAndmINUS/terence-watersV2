@@ -20,7 +20,7 @@ export const ROUTES: Routes[] = [
   {
     component: App,
     componentName: 'home',
-    path: '/',
+    path: '/'
   },
   {
     component: About,
@@ -30,7 +30,7 @@ export const ROUTES: Routes[] = [
   {
     component: Blog,
     componentName: 'blog',
-    path: '/portfolio/blog',
+    path: '/portfolio/blog'
   },
   {
     component: Contact,
