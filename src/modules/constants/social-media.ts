@@ -1,6 +1,4 @@
-import Facebook from '@material-ui/icons/Facebook';
-import Instagram from '@material-ui/icons/Instagram';
-import Twitter from '@material-ui/icons/Twitter';
+import { Facebook, Instagram, Settings, Twitter } from '@material-ui/icons';
 
 // import Menu from '@material-ui/icons/Menu';
 // import MenuOpen from '@material-ui/icons/MenuOpen';
@@ -23,14 +21,19 @@ export const SOCIAL_MEDIA: SocialMedia[] = [
     icon: Instagram,
     path: 'https://instagram.com/aplusandminus'
   },
+  {
+    componentName: 'Twitter',
+    icon: Twitter,
+    path: 'https://twitter.com/aplusandminus'
+  },
+  {
+    componentName: 'Settings',
+    icon: Settings,
+    path: '/settings'
+  }
   // {
   //   componentName: 'Search',
   //   icon: Search,
   //   path: ''
   // },
-  {
-    componentName: 'Twitter',
-    icon: Twitter,
-    path: 'https://twitter.com/aplusandminus'
-  }
 ]
