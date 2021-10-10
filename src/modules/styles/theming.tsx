@@ -1,16 +1,17 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import { COLOR_OBJ, DARK_COLOR, LIGHT_COLOR } from '../../modules/styles/colors';
+import { COLORS, DARK_COLOR, LIGHT_COLOR } from '../../modules/styles/colors';
 import { FONT_FAMILY_SERIF, FONT_SIZE, FONT_WEIGHT } from '../../modules/styles/variables';
 
 export interface ThemeProps {
   children: any;
-  setToggleDarkMode?: Function;
-  toggleDarkMode?: boolean;
+  darkMode: boolean;
+  setDarkMode: Function;
+  setHomePage: Function;
 }
 
-let toggleDarkMode = false;
+let darkMode = false;
 export const theme = createTheme({
   breakpoints: {
     values: {
@@ -22,33 +23,33 @@ export const theme = createTheme({
     }
   },
   palette: {
-    type: toggleDarkMode ? 'dark' : 'light',
+    type: darkMode ? 'dark' : 'light',
     primary: {
-      contrastText: COLOR_OBJ.colorContrastTextPrimary,
-      dark: COLOR_OBJ.colorDark,
-      light: COLOR_OBJ.colorLight,
-      main: COLOR_OBJ.colorMainPrimary
+      contrastText: COLORS.colorContrastTextPrimary,
+      dark: COLORS.colorDark,
+      light: COLORS.colorLight,
+      main: COLORS.colorMainPrimary
     },
     secondary: {
-      contrastText: COLOR_OBJ.colorContrastTextSecondary,
-      main: COLOR_OBJ.colorMainSecondary
+      contrastText: COLORS.colorContrastTextSecondary,
+      main: COLORS.colorMainSecondary
     },
     error: {
-      main: COLOR_OBJ.red
+      main: COLORS.red
     },
     success: {
-      main: COLOR_OBJ.green
+      main: COLORS.green
     },
     warning: {
-      main: COLOR_OBJ.yellow
+      main: COLORS.yellow
     },
     info: {
-      main: COLOR_OBJ.lightBlue
+      main: COLORS.lightBlue
     },
     text: {
-      primary: toggleDarkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
-      secondary: toggleDarkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
-      disabled: COLOR_OBJ.lightGray
+      primary: darkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
+      secondary: darkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
+      disabled: COLORS.lightGray
     }
   },
   typography: {
@@ -59,18 +60,18 @@ export const theme = createTheme({
     fontWeightRegular: FONT_WEIGHT.regular,
     fontWeightLight: FONT_WEIGHT.light,
     button: {
-      color: COLOR_OBJ.white,
+      color: COLORS.white,
       textTransform: 'lowercase',
       fontFamily: 'Roboto, sans-serif'
     },
     caption: {
-      color: toggleDarkMode ? DARK_COLOR.color : LIGHT_COLOR.color,
+      color: darkMode ? DARK_COLOR.color : LIGHT_COLOR.color,
       fontSize: FONT_SIZE.caption,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: 'Roboto, sans-serif'
     },
     h1: {
-      color: toggleDarkMode ? COLOR_OBJ.white : COLOR_OBJ.black,
+      color: darkMode ? COLORS.white : COLORS.black,
       fontSize: FONT_SIZE.title,
       fontWeight: FONT_WEIGHT.light,
       fontFamily: FONT_FAMILY_SERIF,
@@ -78,7 +79,7 @@ export const theme = createTheme({
       textTransform: 'lowercase'
     },
     h2: {
-      color: toggleDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
+      color: darkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
       fontSize: FONT_SIZE.heading,
       fontWeight: FONT_WEIGHT.bold,
       fontFamily: 'Proxima Nova, sans-serif',
@@ -87,41 +88,41 @@ export const theme = createTheme({
       textTransform: 'lowercase'
     },
     h3: {
-      color: toggleDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
+      color: darkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
       fontSize: FONT_SIZE.sectionTitle,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: 'Roboto, sans-serif',
       textTransform: 'lowercase'
     },
     h4: {
-      color: toggleDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
+      color: darkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
       fontSize: FONT_SIZE.subheading,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
     },
     h5: {
-      color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
+      color: darkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
       fontSize: FONT_SIZE.tertiary,
       fontWeight: FONT_WEIGHT.light,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
     },
     h6: {
-      color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
+      color: darkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
       fontSize: FONT_SIZE.quaternary,
       textTransform: 'uppercase',
       fontFamily: FONT_FAMILY_SERIF
     },
     subtitle1: {
-      color: toggleDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
+      color: darkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
       fontSize: FONT_SIZE.subheading,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
     },
     subtitle2: {
-      color: toggleDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
+      color: darkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
       fontSize: FONT_SIZE.tertiary,
       fontWeight: FONT_WEIGHT.light,
       fontFamily: FONT_FAMILY_SERIF,
@@ -132,8 +133,9 @@ export const theme = createTheme({
 
 export const TWMuiThemeProvider = ({
   children,
-  setToggleDarkMode,
-  toggleDarkMode = false }: ThemeProps) => {
+  darkMode = false,
+  setDarkMode,
+  setHomePage }: ThemeProps) => {
 
   return <ThemeProvider theme={theme}>
     {children}

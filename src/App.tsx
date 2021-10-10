@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import { Box, Container, Icon } from '@material-ui/core';
 import { Menu, MenuOpen } from '@material-ui/icons';
@@ -6,11 +6,14 @@ import styled from 'styled-components';
 
 import { SOCIAL_MEDIA } from './modules/constants/social-media';
 import { ROUTES } from './modules/constants/routes';
+import { COLORS, DARK_COLOR, LIGHT_COLOR } from './modules/styles/colors';
 import { theme, TWMuiThemeProvider } from './modules/styles/theming';
-import './App.scss';
+import { FONT_FAMILY_SERIF, FONT_SIZE } from './modules/styles/variables';
+import homePageBackground from './assets/images/homepage_TerenceW.png';
 
 function App() {
-  const [toggleDarkMode, setToggleDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [homePage, setHomePage] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
 
   const SocialMediaLinks = styled(Box)`
@@ -57,13 +60,46 @@ function App() {
     }
   `;
 
-  const Router = () => {
+  const HomePageLink = styled(Link)`
+    ${theme.breakpoints.down('xs')} {
+      font-size: ${FONT_SIZE.linkMobile};
+    }
+    
+    ${theme.breakpoints.up('sm')} {
+      font-size: ${FONT_SIZE.linkDesktop};
+    }
+    color: ${homePage ? COLORS.white : darkMode ? COLORS.colorDark : COLORS.colorLight};
+    font-family: ${FONT_FAMILY_SERIF};
+    text-align: right;
+    text-decoration: none;
+    
+    :hover, :visited {
+      color: ${COLORS.colorMainSecondary};
+    }
+  `;
+
+  const MyApp = () => {
+    useEffect(() => {
+      darkMode ? 
+        document.body.style.backgroundColor = DARK_COLOR.background : 
+        document.body.style.backgroundColor = LIGHT_COLOR.background
+      }, [])
+      
+    useEffect(() => {
+      homePage ?
+        document.body.style.backgroundImage = `url(${homePageBackground})` : 
+        document.body.style.backgroundImage = 'none'
+    }, [])
+
     return (
-      <BrowserRouter>
-        <div className="App">
+      <div className="App" style={{
+        backgroundColor: darkMode ? DARK_COLOR.background : LIGHT_COLOR.background,
+        backgroundImage: homePage ? `url(${homePageBackground})` : 'none',
+      }}>
+        <BrowserRouter>
           <SocialMediaLinks sx={{ p: 1, m: 1 }} className="social_media-links">
             {SOCIAL_MEDIA.map(s => (
-              <Link to={s.path}><Icon component={s.icon} color="primary" fontSize="large" /></Link>
+              <Link to={s.path}><Icon component={s.icon} color={"primary"} fontSize="large" /></Link>
             ))}
           </SocialMediaLinks>
 
@@ -71,12 +107,10 @@ function App() {
             <Box style={{ cursor: 'pointer' }} onClick={() => setShowMenu(!showMenu)}>
               <Icon component={showMenu ? MenuOpen : Menu} color="primary" fontSize="large" />
             </Box>
-            {showMenu && (<Box>
-              <ul>
-                {ROUTES.map(r => (
-                  !r.subMenu && !r.notFound ? <li><Link className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</Link></li>
-                    : null))}
-              </ul>
+            {showMenu && (<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              {ROUTES.map(r => (
+                !r.subMenu && !r.notFound ? <HomePageLink className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
+                  : null))}
             </Box>)}
           </NavigationLinks>
 
@@ -85,16 +119,17 @@ function App() {
               !r.notFound ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
             ))}
           </Switch>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </div>
     )
   }
 
   return (
     <TWMuiThemeProvider
-      children={<Router />}
-      setToggleDarkMode={setToggleDarkMode}
-      toggleDarkMode={toggleDarkMode} />
+      children={<MyApp />}
+      setDarkMode={setDarkMode}
+      setHomePage={setHomePage}
+      darkMode={darkMode} />
   );
 }
 

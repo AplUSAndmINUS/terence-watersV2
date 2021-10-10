@@ -1,4 +1,4 @@
-export const COLOR_OBJ = {
+export const COLORS = {
   black: '#000',
   white: '#FFF',
   red: '#E22C35',
@@ -16,11 +16,12 @@ export const COLOR_OBJ = {
 
 export const DARK_COLOR = {
   text: '#FFF',
-  color: COLOR_OBJ.colorDark,
-  largeHeading: COLOR_OBJ.colorDark,
-  pageHeading: COLOR_OBJ.colorDark,
+  color: COLORS.colorDark,
+  largeHeading: COLORS.colorDark,
+  pageHeading: COLORS.colorDark,
   subHeading: '#FFF',
   background: 'radial-gradient(rgba(83,83,83,1) 0%, rgba(56,56,56,1) 64.82%, rgba(92,92,92,1) 100%)',
+  backgroundColor: '#383838',
   mediaBackground: '#5C5C5C',
   mediaTextBackground: '#748BA5',
   mediaCardHeading: '#FFF',
@@ -30,26 +31,27 @@ export const DARK_COLOR = {
   buttonSecondary: '#4379AB',
   textFieldBackground: '#748BA5',
   textFieldText: '#FFF',
-  menuText: COLOR_OBJ.colorDark,
-  menuIcon: COLOR_OBJ.colorDark
+  menuText: COLORS.colorDark,
+  menuIcon: COLORS.colorDark
 }
 
 export const LIGHT_COLOR = {
   text: '#333',
-  color: COLOR_OBJ.colorLight,
-  largeHeading: COLOR_OBJ.colorLight,
-  pageHeading: COLOR_OBJ.colorLight,
+  color: COLORS.colorLight,
+  largeHeading: COLORS.colorLight,
+  pageHeading: COLORS.colorLight,
   subHeading: '#333',
   background: 'radial-gradient(rgba(255,255,255,1) 0%, rgba(244,244,244,1) 65.52%, rgba(178,177,177,0.22) 100%)',
+  backgroundColor: '#FFF',
   mediaBackground: '#FFF',
   mediaTextBackground: '#FFF',
-  mediaCardHeading: COLOR_OBJ.colorLight,
+  mediaCardHeading: COLORS.colorLight,
   mediaCardSubheading: '#748BA5',
-  mediaFilterButton: COLOR_OBJ.colorLight,
+  mediaFilterButton: COLORS.colorLight,
   buttonPrimary: '#445F7E',
   buttonSecondary: '#445F7E',
   textFieldBackground: '#748BA5',
   textFieldText: '#FFF',
-  menuText: COLOR_OBJ.colorLight,
-  menuIcon: COLOR_OBJ.colorLight
+  menuText: COLORS.colorLight,
+  menuIcon: COLORS.colorLight
 }
