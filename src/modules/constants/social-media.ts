@@ -20,14 +20,14 @@ export const SOCIAL_MEDIA: SocialMedia[] = [
     path: 'https://facebook.com/aplusandminus'
   },
   {
-    componentName: 'Instagram',
-    icon: Instagram,
-    path: 'https://instagram.com/aplusandminus'
-  },
-  {
     componentName: 'Twitter',
     icon: Twitter,
     path: 'https://twitter.com/aplusandminus'
+  },
+  {
+    componentName: 'Instagram',
+    icon: Instagram,
+    path: 'https://instagram.com/aplusandminus'
   },
   {
     componentName: 'Twitter',

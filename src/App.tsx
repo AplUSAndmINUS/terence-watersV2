@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
-import { Box, Container, Icon, SvgIcon } from '@material-ui/core';
+import { Box, Container, Icon, SvgIcon, Typography } from '@material-ui/core';
 import { Menu, MenuOpen } from '@material-ui/icons';
 import styled from 'styled-components';
 
@@ -32,7 +32,7 @@ function App() {
       position: absolute;
       top: 24px;
       right: 16px;
-      min-width: 300px;
+      min-width: 400px;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -63,15 +63,9 @@ function App() {
   `;
 
   const HomePageLink = styled(Link)`
-    ${theme.breakpoints.down('xs')} {
-      font-size: ${FONT_SIZE.linkMobile};
-    }
-    
-    ${theme.breakpoints.up('sm')} {
-      font-size: ${FONT_SIZE.linkDesktop};
-    }
     color: ${homePage ? COLORS.white : darkMode ? COLORS.colorDark : COLORS.colorLight};
     font-family: ${FONT_FAMILY_SERIF};
+    font-size: ${FONT_SIZE.link}rem;
     text-align: right;
     text-decoration: none;
     
@@ -109,10 +103,10 @@ function App() {
                 {s.customSvg ? <SvgIcon fontSize="large"
                     style={{
                       fill: homePage ? COLORS.white :
-                        darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary,
-                      display: 'flex',
+                      darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary,
                       fontSize: '30px',
                       marginTop: '4px',
+                      display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'baseline'
                     }} component={s.icon}>{s.icon}</SvgIcon> :
@@ -124,16 +118,28 @@ function App() {
                         darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary
                     }} />}
               </Link>))}
+              <Box display="flex" alignItems="flex-start" flex-direction="column" style={{ cursor: 'pointer' }} onClick={() => setShowMenu(!showMenu)}>
+                <Icon component={showMenu ? MenuOpen : Menu} fontSize="large" style={{
+                  fill: homePage ? COLORS.white :
+                    darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary,
+                    fontSize: '48px',
+                    marginTop: '-6px'
+                }} />
+              <Typography
+                color="textPrimary"
+                variant="subtitle2"
+                style={{ fontWeight: 500 }}>menu</Typography>
+              </Box>
           </SocialMediaLinks>
 
           <NavigationLinks className="navigation-links">
-            <Box style={{ cursor: 'pointer' }} onClick={() => setShowMenu(!showMenu)}>
-              <Icon component={showMenu ? MenuOpen : Menu} fontSize="large" style={{
-                fill: homePage ? COLORS.white :
-                  darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary
-              }} />
-            </Box>
-            {showMenu && (<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            {showMenu && (<Box sx={{
+              borderRight: '2px solid #FFF',
+              display: 'flex',
+              flexDirection: 'column',
+              paddingRight: '12px',
+              marginTop: '16px'
+            }}>
               {ROUTES.map(r => (
                 !r.subMenu && !r.notFound ? <HomePageLink className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
                   : null))}

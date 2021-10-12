@@ -68,13 +68,13 @@ export const theme = createTheme({
     },
     caption: {
       color: darkMode ? DARK_COLOR.color : LIGHT_COLOR.color,
-      fontSize: FONT_SIZE.caption,
+      fontSize: `${FONT_SIZE.caption}rem`,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: 'Roboto, sans-serif'
     },
     h1: {
       color: darkMode ? COLORS.white : COLORS.black,
-      fontSize: FONT_SIZE.title,
+      fontSize: `${FONT_SIZE.title}rem`,
       fontWeight: FONT_WEIGHT.light,
       fontFamily: FONT_FAMILY_SERIF,
       lineHeight: '48px',
@@ -82,7 +82,7 @@ export const theme = createTheme({
     },
     h2: {
       color: darkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
-      fontSize: FONT_SIZE.heading,
+      fontSize: `${FONT_SIZE.heading}rem`,
       fontWeight: FONT_WEIGHT.bold,
       fontFamily: `"Proxima Nova", sans-serif`,
       letterSpacing: '-0.2px',
@@ -91,41 +91,41 @@ export const theme = createTheme({
     },
     h3: {
       color: darkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
-      fontSize: FONT_SIZE.sectionTitle,
+      fontSize: `${FONT_SIZE.sectionTitle}rem`,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: 'Roboto, sans-serif',
       textTransform: 'lowercase'
     },
     h4: {
       color: darkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
-      fontSize: FONT_SIZE.subheading,
+      fontSize: `${FONT_SIZE.subheading}rem`,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
     },
     h5: {
       color: darkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
-      fontSize: FONT_SIZE.tertiary,
+      fontSize: `${FONT_SIZE.tertiary}rem`,
       fontWeight: FONT_WEIGHT.light,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
     },
     h6: {
       color: darkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
-      fontSize: FONT_SIZE.quaternary,
+      fontSize: `${FONT_SIZE.quaternary}rem`,
       textTransform: 'uppercase',
       fontFamily: FONT_FAMILY_SERIF
     },
     subtitle1: {
       color: darkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
-      fontSize: FONT_SIZE.subheading,
+      fontSize: `${FONT_SIZE.subheading}rem`,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
     },
     subtitle2: {
       color: darkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
-      fontSize: FONT_SIZE.tertiary,
+      fontSize: `${FONT_SIZE.tertiary}rem`,
       fontWeight: FONT_WEIGHT.light,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
