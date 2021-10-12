@@ -7,11 +7,13 @@ import { FONT_FAMILY_SERIF, FONT_SIZE, FONT_WEIGHT } from '../../modules/styles/
 export interface ThemeProps {
   children: any;
   darkMode: boolean;
+  homePage: boolean;
   setDarkMode: Function;
   setHomePage: Function;
 }
 
 let darkMode = false;
+let homePage = true;
 export const theme = createTheme({
   breakpoints: {
     values: {
@@ -47,7 +49,7 @@ export const theme = createTheme({
       main: COLORS.lightBlue
     },
     text: {
-      primary: darkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
+      primary: homePage ? COLORS.white : darkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
       secondary: darkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
       disabled: COLORS.lightGray
     }
@@ -82,7 +84,7 @@ export const theme = createTheme({
       color: darkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
       fontSize: FONT_SIZE.heading,
       fontWeight: FONT_WEIGHT.bold,
-      fontFamily: 'Proxima Nova, sans-serif',
+      fontFamily: `"Proxima Nova", sans-serif`,
       letterSpacing: '-0.2px',
       lineHeight: '40px',
       textTransform: 'lowercase'
@@ -134,6 +136,7 @@ export const theme = createTheme({
 export const TWMuiThemeProvider = ({
   children,
   darkMode = false,
+  homePage = false,
   setDarkMode,
   setHomePage }: ThemeProps) => {
 

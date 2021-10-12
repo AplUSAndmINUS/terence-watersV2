@@ -6,6 +6,7 @@ export const COLORS = {
   yellow: '#FEE44D',
   lightBlue: '#4379AB',
   lightGray: '#ABABAB',
+  lighterGray: '#BCBCBC',
   colorLight: '#445F7E',
   colorDark: '#5B799B',
   colorMainPrimary: '#445F7E',

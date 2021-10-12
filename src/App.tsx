@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
-import { Box, Container, Icon } from '@material-ui/core';
+import { Box, Container, Icon, SvgIcon } from '@material-ui/core';
 import { Menu, MenuOpen } from '@material-ui/icons';
 import styled from 'styled-components';
 
@@ -31,9 +31,11 @@ function App() {
     ${theme.breakpoints.up('sm')} {
       position: absolute;
       top: 24px;
-      right: 8px;
+      right: 48px;
+      min-width: 275px;
       display: flex;
       flex-direction: row;
+      justify-content: space-around;
     };
   `;
 
@@ -73,8 +75,12 @@ function App() {
     text-align: right;
     text-decoration: none;
     
-    :hover, :visited {
-      color: ${COLORS.colorMainSecondary};
+    :hover {
+      color: ${homePage ? COLORS.lighterGray : COLORS.colorMainSecondary};
+    }
+
+    :visited {
+      color: ${homePage ? COLORS.white : COLORS.colorMainSecondary};
     }
   `;
 
@@ -99,13 +105,28 @@ function App() {
         <BrowserRouter>
           <SocialMediaLinks sx={{ p: 1, m: 1 }} className="social_media-links">
             {SOCIAL_MEDIA.map(s => (
-              <Link to={s.path}><Icon component={s.icon} color={"primary"} fontSize="large" /></Link>
-            ))}
+              <Link to={s.path}>
+                {s.customSvg ? <SvgIcon fontSize="large"
+                    style={{
+                      fill: homePage ? COLORS.white :
+                        darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary
+                    }} component={s.icon}>{s.icon}</SvgIcon> :
+                  <Icon
+                    component={s.icon}
+                    fontSize="large"
+                    style={{
+                      fill: homePage ? COLORS.white :
+                        darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary
+                    }} />}
+              </Link>))}
           </SocialMediaLinks>
 
           <NavigationLinks className="navigation-links">
             <Box style={{ cursor: 'pointer' }} onClick={() => setShowMenu(!showMenu)}>
-              <Icon component={showMenu ? MenuOpen : Menu} color="primary" fontSize="large" />
+              <Icon component={showMenu ? MenuOpen : Menu} fontSize="large" style={{
+                fill: homePage ? COLORS.white :
+                  darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary
+              }} />
             </Box>
             {showMenu && (<Box sx={{ display: 'flex', flexDirection: 'column' }}>
               {ROUTES.map(r => (
@@ -124,12 +145,14 @@ function App() {
     )
   }
 
+  // do I need to change props to go into MyApp for Dark Mode & Home Page?
   return (
     <TWMuiThemeProvider
       children={<MyApp />}
+      darkMode={darkMode}
+      homePage={homePage}
       setDarkMode={setDarkMode}
-      setHomePage={setHomePage}
-      darkMode={darkMode} />
+      setHomePage={setHomePage} />
   );
 }
 

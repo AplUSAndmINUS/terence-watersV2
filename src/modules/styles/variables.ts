@@ -18,8 +18,8 @@ export const ELEVATION = {
   el5: createElevation(5)
 } as const;
 
-export const FONT_FAMILY_SERIF = `${"'Public Sans', 'Helvetica Neue', 'Open Sans', 'Arial', 'Verdana', 'sans-serif'"}`;
-export const FONT_FAMILY_MONO = `${"'Roboto Mono', 'Courier New', monospace"}`;
+export const FONT_FAMILY_SERIF = `"Public Sans", "Helvetica Neue", "Open Sans", Arial, Verdana, sans-serif`;
+export const FONT_FAMILY_MONO = `"Roboto Mono", "Courier New", monospace`;
 
 export const FONT_SIZE = {
   body: 14,
