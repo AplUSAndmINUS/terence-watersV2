@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
-import { Box, Container, Icon, SvgIcon, Typography } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Container,
+  Icon,
+  SvgIcon,
+  Typography
+} from '@material-ui/core';
 import { Menu, MenuOpen } from '@material-ui/icons';
 import styled from 'styled-components';
 
@@ -32,7 +39,7 @@ function App() {
       position: absolute;
       top: 24px;
       right: 16px;
-      min-width: 400px;
+      min-width: 550px;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -101,15 +108,18 @@ function App() {
             {SOCIAL_MEDIA.map(s => (
               <Link to={s.path}>
                 {s.customSvg ? <SvgIcon fontSize="large"
-                    style={{
-                      fill: homePage ? COLORS.white :
-                      darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary,
-                      fontSize: '30px',
-                      marginTop: '4px',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'baseline'
-                    }} component={s.icon}>{s.icon}</SvgIcon> :
+                  style={{
+                    fill: homePage
+                      ? COLORS.white
+                      : darkMode
+                        ? DARK_COLOR.buttonPrimary
+                        : LIGHT_COLOR.buttonPrimary,
+                    fontSize: '30px',
+                    marginTop: '4px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'baseline'
+                  }} component={s.icon}>{s.icon}</SvgIcon> :
                   <Icon
                     component={s.icon}
                     fontSize="large"
@@ -118,17 +128,27 @@ function App() {
                         darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary
                     }} />}
               </Link>))}
+              <Button color="primary" href="/contact" variant="contained" value="Hire Me!">hire me!</Button>
               <Box display="flex" alignItems="flex-start" flex-direction="column" style={{ cursor: 'pointer' }} onClick={() => setShowMenu(!showMenu)}>
                 <Icon component={showMenu ? MenuOpen : Menu} fontSize="large" style={{
-                  fill: homePage ? COLORS.white :
-                    darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary,
-                    fontSize: '48px',
-                    marginTop: '-6px'
+                  fill: homePage
+                    ? COLORS.white
+                    : darkMode
+                      ? DARK_COLOR.buttonPrimary
+                      : LIGHT_COLOR.buttonPrimary,
+                  fontSize: '48px',
+                  marginTop: '-6px'
                 }} />
-              <Typography
-                color="textPrimary"
-                variant="subtitle2"
-                style={{ fontWeight: 500 }}>menu</Typography>
+                <Typography
+                  variant="subtitle2"
+                  style={{
+                        color: homePage
+                      ? COLORS.white
+                      : darkMode
+                        ? DARK_COLOR.menuText
+                        : LIGHT_COLOR.menuText,
+                        fontWeight: 500
+                  }}>menu</Typography>
               </Box>
           </SocialMediaLinks>
 

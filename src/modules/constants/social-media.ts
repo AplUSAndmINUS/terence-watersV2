@@ -30,13 +30,13 @@ export const SOCIAL_MEDIA: SocialMedia[] = [
     path: 'https://instagram.com/aplusandminus'
   },
   {
-    componentName: 'Twitter',
+    componentName: 'Twitch',
     customSvg: true,
     icon: Twitch,
-    path: 'https://twitter.com/aplusandminus'
+    path: 'https://twitch.tv/aplusandminus'
   },
   {
-    componentName: 'Twitter',
+    componentName: 'Tiktok',
     customSvg: true,
     icon: Tiktok,
     path: 'https://twitter.com/aplusandminus'
