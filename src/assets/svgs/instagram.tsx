@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Instagram: React.FC = (props) => {
   return (
-    <svg version="1.1" id="instagram_svg" x="0px" y="0px"
+    <svg version="1.1" id="instagram_svg" x="0px" y="4px"
       viewBox="0 0 24 24" {...props}>
 <path d="M12,9c-1.6,0-3,1.3-3,3s1.3,3,3,3s3-1.3,3-3c0,0,0,0,0,0C15,10.4,13.6,9,12,9z M23.9,6.1c0-0.9-0.2-1.8-0.5-2.7
 	c-0.5-1.3-1.5-2.3-2.8-2.8c-0.9-0.3-1.8-0.5-2.7-0.5C16.4,0,15.9,0,12,0S7.6,0,6.1,0.1c-0.9,0-1.8,0.2-2.7,0.5

@@ -1,6 +1,6 @@
-import { Facebook, Settings, Twitter } from '@material-ui/icons';
+import { Facebook, Instagram, Settings, Twitter } from '@material-ui/icons';
 
-import Instagram from '../../assets/svgs/instagram';
+// import Instagram from '../../assets/svgs/instagram';
 import Tiktok from '../../assets/svgs/tiktok';
 import Twitch from '../../assets/svgs/twitch';
 
@@ -21,7 +21,6 @@ export const SOCIAL_MEDIA: SocialMedia[] = [
   },
   {
     componentName: 'Instagram',
-    customSvg: true,
     icon: Instagram,
     path: 'https://instagram.com/aplusandminus'
   },
@@ -31,16 +30,16 @@ export const SOCIAL_MEDIA: SocialMedia[] = [
     path: 'https://twitter.com/aplusandminus'
   },
   {
-    componentName: 'Tiktok',
-    customSvg: true,
-    icon: Tiktok,
-    path: 'https://instagram.com/aplusandminus'
-  },
-  {
-    componentName: 'Twitch',
+    componentName: 'Twitter',
     customSvg: true,
     icon: Twitch,
-    path: 'https://instagram.com/aplusandminus'
+    path: 'https://twitter.com/aplusandminus'
+  },
+  {
+    componentName: 'Twitter',
+    customSvg: true,
+    icon: Tiktok,
+    path: 'https://twitter.com/aplusandminus'
   },
   {
     componentName: 'Settings',

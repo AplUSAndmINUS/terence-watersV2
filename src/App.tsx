@@ -31,8 +31,8 @@ function App() {
     ${theme.breakpoints.up('sm')} {
       position: absolute;
       top: 24px;
-      right: 48px;
-      min-width: 275px;
+      right: 16px;
+      min-width: 300px;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -109,7 +109,12 @@ function App() {
                 {s.customSvg ? <SvgIcon fontSize="large"
                     style={{
                       fill: homePage ? COLORS.white :
-                        darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary
+                        darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary,
+                      display: 'flex',
+                      fontSize: '30px',
+                      marginTop: '4px',
+                      justifyContent: 'center',
+                      alignItems: 'baseline'
                     }} component={s.icon}>{s.icon}</SvgIcon> :
                   <Icon
                     component={s.icon}
