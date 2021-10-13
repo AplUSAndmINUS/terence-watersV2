@@ -54,6 +54,23 @@ export const theme = createTheme({
       disabled: COLORS.lightGray
     }
   },
+  overrides: {
+    MuiButton: {
+      root: {
+        borderRadius: '0px',
+        paddingLeft: '24px',
+        paddingRight: '24px'
+      },
+      label: {
+        fontSize: '1.1rem'
+      }
+    },
+    MuiButtonBase: {
+      root: {
+        borderRadius: '0px'
+      }
+    }
+  },
   typography: {
     fontFamily: FONT_FAMILY_SERIF,
     fontSize: FONT_SIZE.body,

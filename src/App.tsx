@@ -106,7 +106,7 @@ function App() {
         <BrowserRouter>
           <SocialMediaLinks sx={{ p: 1, m: 1 }} className="social_media-links">
             {SOCIAL_MEDIA.map(s => (
-              <Link to={s.path}>
+              <Link to={{ pathname: s.path }} target="_blank">
                 {s.customSvg ? <SvgIcon fontSize="large"
                   style={{
                     fill: homePage
@@ -129,7 +129,12 @@ function App() {
                     }} />}
               </Link>))}
               <Button color="primary" href="/contact" variant="contained" value="Hire Me!">hire me!</Button>
-              <Box display="flex" alignItems="flex-start" flex-direction="column" style={{ cursor: 'pointer' }} onClick={() => setShowMenu(!showMenu)}>
+              <Box
+                display="flex"
+                alignItems="flex-start"
+                flex-direction="column"
+                onClick={() => setShowMenu(!showMenu)}
+                style={{ cursor: 'pointer' }}>
                 <Icon component={showMenu ? MenuOpen : Menu} fontSize="large" style={{
                   fill: homePage
                     ? COLORS.white
@@ -142,12 +147,12 @@ function App() {
                 <Typography
                   variant="subtitle2"
                   style={{
-                        color: homePage
+                    color: homePage
                       ? COLORS.white
                       : darkMode
                         ? DARK_COLOR.menuText
                         : LIGHT_COLOR.menuText,
-                        fontWeight: 500
+                    fontWeight: 500
                   }}>menu</Typography>
               </Box>
           </SocialMediaLinks>
@@ -161,14 +166,14 @@ function App() {
               marginTop: '16px'
             }}>
               {ROUTES.map(r => (
-                !r.subMenu && !r.notFound ? <HomePageLink className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
+                !r.subMenu && !r.isNotMenu ? <HomePageLink className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
                   : null))}
             </Box>)}
           </NavigationLinks>
 
           <Switch>
             {ROUTES.map(r => (
-              !r.notFound ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
+              !r.isNotMenu ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
             ))}
           </Switch>
         </BrowserRouter>

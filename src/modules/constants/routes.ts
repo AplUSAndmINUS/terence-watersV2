@@ -7,11 +7,12 @@ import GitHub from '../../pages/github/github';
 import Music from '../../pages/music/music';
 import NotFound from '../../pages/404/404';
 import Portfolio from '../../pages/portfolio/portfolio';
+import Settings from '../../pages/settings/settings';
 
 interface Routes {
   component: () => JSX.Element;
   componentName: string;
-  notFound?: boolean;
+  isNotMenu?: boolean;
   path: string;
   subMenu?: boolean;
 }
@@ -60,9 +61,15 @@ export const ROUTES: Routes[] = [
     path: '/portfolio'
   },
   {
+    component: Settings,
+    componentName: 'settings',
+    isNotMenu: true,
+    path: '/settings'
+  },
+  {
     component: NotFound,
     componentName: '404',
-    notFound: true,
+    isNotMenu: true,
     path: '/404'
   },
 ]

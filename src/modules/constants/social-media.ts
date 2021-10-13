@@ -39,7 +39,7 @@ export const SOCIAL_MEDIA: SocialMedia[] = [
     componentName: 'Tiktok',
     customSvg: true,
     icon: Tiktok,
-    path: 'https://twitter.com/aplusandminus'
+    path: 'https://www.tiktok.com/@aplusandminus'
   },
   {
     componentName: 'Settings',
