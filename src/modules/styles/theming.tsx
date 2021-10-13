@@ -6,14 +6,14 @@ import { FONT_FAMILY_SERIF, FONT_SIZE, FONT_WEIGHT } from '../../modules/styles/
 
 export interface ThemeProps {
   children: any;
-  darkMode: boolean;
-  homePage: boolean;
+  isDarkMode: boolean;
+  isHomePage: boolean;
   setDarkMode: Function;
   setHomePage: Function;
 }
 
-let darkMode = false;
-let homePage = true;
+let isDarkMode = false;
+let isHomePage = true;
 export const theme = createTheme({
   breakpoints: {
     values: {
@@ -25,7 +25,7 @@ export const theme = createTheme({
     }
   },
   palette: {
-    type: darkMode ? 'dark' : 'light',
+    type: isDarkMode ? 'dark' : 'light',
     primary: {
       contrastText: COLORS.colorContrastTextPrimary,
       dark: COLORS.colorDark,
@@ -49,8 +49,12 @@ export const theme = createTheme({
       main: COLORS.lightBlue
     },
     text: {
-      primary: homePage ? COLORS.white : darkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
-      secondary: darkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
+      primary: isHomePage
+        ? COLORS.white
+        : isDarkMode
+          ? DARK_COLOR.text
+          : LIGHT_COLOR.text,
+      secondary: isDarkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
       disabled: COLORS.lightGray
     }
   },
@@ -62,7 +66,7 @@ export const theme = createTheme({
         paddingRight: '24px'
       },
       label: {
-        fontSize: '1.1rem'
+        fontSize: '1rem'
       }
     },
     MuiButtonBase: {
@@ -84,13 +88,13 @@ export const theme = createTheme({
       fontFamily: 'Roboto, sans-serif'
     },
     caption: {
-      color: darkMode ? DARK_COLOR.color : LIGHT_COLOR.color,
+      color: isDarkMode ? DARK_COLOR.color : LIGHT_COLOR.color,
       fontSize: `${FONT_SIZE.caption}rem`,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: 'Roboto, sans-serif'
     },
     h1: {
-      color: darkMode ? COLORS.white : COLORS.black,
+      color: isDarkMode ? COLORS.white : COLORS.black,
       fontSize: `${FONT_SIZE.title}rem`,
       fontWeight: FONT_WEIGHT.light,
       fontFamily: FONT_FAMILY_SERIF,
@@ -98,7 +102,7 @@ export const theme = createTheme({
       textTransform: 'lowercase'
     },
     h2: {
-      color: darkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
+      color: isDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
       fontSize: `${FONT_SIZE.heading}rem`,
       fontWeight: FONT_WEIGHT.bold,
       fontFamily: `"Proxima Nova", sans-serif`,
@@ -107,41 +111,41 @@ export const theme = createTheme({
       textTransform: 'lowercase'
     },
     h3: {
-      color: darkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
+      color: isDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
       fontSize: `${FONT_SIZE.sectionTitle}rem`,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: 'Roboto, sans-serif',
       textTransform: 'lowercase'
     },
     h4: {
-      color: darkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
+      color: isDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
       fontSize: `${FONT_SIZE.subheading}rem`,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
     },
     h5: {
-      color: darkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
+      color: isDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
       fontSize: `${FONT_SIZE.tertiary}rem`,
       fontWeight: FONT_WEIGHT.light,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
     },
     h6: {
-      color: darkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
+      color: isDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
       fontSize: `${FONT_SIZE.quaternary}rem`,
       textTransform: 'uppercase',
       fontFamily: FONT_FAMILY_SERIF
     },
     subtitle1: {
-      color: darkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
+      color: isDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
       fontSize: `${FONT_SIZE.subheading}rem`,
       fontWeight: FONT_WEIGHT.regular,
       fontFamily: FONT_FAMILY_SERIF,
       textTransform: 'lowercase'
     },
     subtitle2: {
-      color: darkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
+      color: isDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
       fontSize: `${FONT_SIZE.tertiary}rem`,
       fontWeight: FONT_WEIGHT.light,
       fontFamily: FONT_FAMILY_SERIF,
@@ -152,8 +156,8 @@ export const theme = createTheme({
 
 export const TWMuiThemeProvider = ({
   children,
-  darkMode = false,
-  homePage = false,
+  isDarkMode = false,
+  isHomePage = false,
   setDarkMode,
   setHomePage }: ThemeProps) => {
 

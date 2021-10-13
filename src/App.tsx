@@ -3,7 +3,6 @@ import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import {
   Box,
   Button,
-  Container,
   Icon,
   SvgIcon,
   Typography
@@ -11,17 +10,24 @@ import {
 import { Menu, MenuOpen } from '@material-ui/icons';
 import styled from 'styled-components';
 
+import homePageBackground from './assets/images/homepage_TerenceW.jpg';
+import homePageBackgroundMobile from './assets/images/homepageMobile_TerenceW.jpg';
 import { SOCIAL_MEDIA } from './modules/constants/social-media';
 import { ROUTES } from './modules/constants/routes';
 import { COLORS, DARK_COLOR, LIGHT_COLOR } from './modules/styles/colors';
 import { theme, TWMuiThemeProvider } from './modules/styles/theming';
 import { FONT_FAMILY_SERIF, FONT_SIZE } from './modules/styles/variables';
-import homePageBackground from './assets/images/homepage_TerenceW.png';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [homePage, setHomePage] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isHomePage, setIsHomePage] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  let imgBackground = isHomePage
+    ? isMobile
+      ? homePageBackgroundMobile
+      : homePageBackground
+    : 'none';
 
   const SocialMediaLinks = styled(Box)`
     ${theme.breakpoints.down('xs')} {
@@ -32,6 +38,7 @@ function App() {
       right: 0;
       display: flex;
       flex-direction: row;
+      align-items: center;
       justify-content: flex-end;
     };
 
@@ -39,14 +46,14 @@ function App() {
       position: absolute;
       top: 24px;
       right: 16px;
-      min-width: 550px;
+      min-width: 500px;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
     };
   `;
 
-  const NavigationLinks = styled(Container)`
+  const NavigationLinks = styled(Box)`
     ${theme.breakpoints.down('xs')} {
       width: 100%;
       height: 100%;
@@ -62,7 +69,7 @@ function App() {
     ${theme.breakpoints.up('sm')} {
       position: absolute;
       top: 64px;
-      right: 8px;
+      right: 32px;
       display: flex;
       flex-direction: column;
       align-content: flex-end;
@@ -70,112 +77,143 @@ function App() {
   `;
 
   const HomePageLink = styled(Link)`
-    color: ${homePage ? COLORS.white : darkMode ? COLORS.colorDark : COLORS.colorLight};
+    color: ${isHomePage
+    ? COLORS.white
+    : isDarkMode
+      ? COLORS.colorDark
+      : COLORS.colorLight};
     font-family: ${FONT_FAMILY_SERIF};
     font-size: ${FONT_SIZE.link}rem;
     text-align: right;
     text-decoration: none;
     
     :hover {
-      color: ${homePage ? COLORS.lighterGray : COLORS.colorMainSecondary};
+      color: ${isHomePage ? COLORS.lighterGray : COLORS.colorMainSecondary};
     }
 
     :visited {
-      color: ${homePage ? COLORS.white : COLORS.colorMainSecondary};
+      color: ${isHomePage ? COLORS.white : COLORS.colorMainSecondary};
     }
   `;
 
   const MyApp = () => {
     useEffect(() => {
-      darkMode ? 
+      isDarkMode ? 
         document.body.style.backgroundColor = DARK_COLOR.background : 
         document.body.style.backgroundColor = LIGHT_COLOR.background
       }, [])
       
     useEffect(() => {
-      homePage ?
-        document.body.style.backgroundImage = `url(${homePageBackground})` : 
-        document.body.style.backgroundImage = 'none'
+      isHomePage &&
+        isMobile
+          ? imgBackground = homePageBackgroundMobile
+          : imgBackground = homePageBackground
     }, [])
+
+    useEffect(() => {
+      theme.breakpoints.down('xs')
+        ? setIsMobile(true)
+        : setIsMobile(false)
+    }, []);
 
     return (
       <div className="App" style={{
-        backgroundColor: darkMode ? DARK_COLOR.background : LIGHT_COLOR.background,
-        backgroundImage: homePage ? `url(${homePageBackground})` : 'none',
+        display: 'block',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%'
       }}>
         <BrowserRouter>
-          <SocialMediaLinks sx={{ p: 1, m: 1 }} className="social_media-links">
-            {SOCIAL_MEDIA.map(s => (
-              <Link to={{ pathname: s.path }} target="_blank">
-                {s.customSvg ? <SvgIcon fontSize="large"
-                  style={{
-                    fill: homePage
+          <div className="bgcover" style={{
+            backgroundColor: isDarkMode ? DARK_COLOR.background : LIGHT_COLOR.background,
+            backgroundAttachment: 'fixed',
+            backgroundImage: isHomePage ? `url(${imgBackground})` : 'none',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: isHomePage ? 'cover' : 'none',
+            height: '100%',
+            width: '100%'
+          }}>
+            <SocialMediaLinks sx={{ p: 1, m: 1 }} className="social_media-links">
+              {SOCIAL_MEDIA.map(s => (
+                <Link to={{ pathname: s.path }} target="_blank">
+                  {s.customSvg ? <SvgIcon fontSize="large"
+                    style={{
+                      fill: isHomePage
+                        ? COLORS.white
+                        : isDarkMode
+                          ? DARK_COLOR.buttonPrimary
+                          : LIGHT_COLOR.buttonPrimary,
+                      fontSize: '24px',
+                      marginTop: '10px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'baseline'
+                    }} component={s.icon}>{s.icon}</SvgIcon> :
+                    <Icon
+                      component={s.icon}
+                      fontSize="medium"
+                      style={{
+                        fill: isHomePage
+                          ? COLORS.white
+                          : isDarkMode
+                            ? DARK_COLOR.buttonPrimary
+                            : LIGHT_COLOR.buttonPrimary,
+                        fontSize: '30px',
+                        marginTop: '6px'
+                      }} />}
+                </Link>))}
+                <Button color="primary" href="/contact" variant="contained" value="Hire Me!">hire me!</Button>
+                <Box
+                  display="flex"
+                  alignItems="flex-start"
+                  flex-direction="column"
+                  onClick={() => setShowMenu(!showMenu)}
+                  style={{ cursor: 'pointer', marginTop: '2px' }}>
+                  <Icon component={showMenu ? MenuOpen : Menu} fontSize="large" style={{
+                    fill: isHomePage
                       ? COLORS.white
-                      : darkMode
+                      : isDarkMode
                         ? DARK_COLOR.buttonPrimary
                         : LIGHT_COLOR.buttonPrimary,
-                    fontSize: '30px',
-                    marginTop: '4px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'baseline'
-                  }} component={s.icon}>{s.icon}</SvgIcon> :
-                  <Icon
-                    component={s.icon}
-                    fontSize="large"
+                    fontSize: '48px',
+                    marginTop: '-6px'
+                  }} />
+                  <Typography
+                    variant="subtitle2"
                     style={{
-                      fill: homePage ? COLORS.white :
-                        darkMode ? DARK_COLOR.buttonPrimary : LIGHT_COLOR.buttonPrimary
-                    }} />}
-              </Link>))}
-              <Button color="primary" href="/contact" variant="contained" value="Hire Me!">hire me!</Button>
-              <Box
-                display="flex"
-                alignItems="flex-start"
-                flex-direction="column"
-                onClick={() => setShowMenu(!showMenu)}
-                style={{ cursor: 'pointer' }}>
-                <Icon component={showMenu ? MenuOpen : Menu} fontSize="large" style={{
-                  fill: homePage
-                    ? COLORS.white
-                    : darkMode
-                      ? DARK_COLOR.buttonPrimary
-                      : LIGHT_COLOR.buttonPrimary,
-                  fontSize: '48px',
-                  marginTop: '-6px'
-                }} />
-                <Typography
-                  variant="subtitle2"
-                  style={{
-                    color: homePage
-                      ? COLORS.white
-                      : darkMode
-                        ? DARK_COLOR.menuText
-                        : LIGHT_COLOR.menuText,
-                    fontWeight: 500
-                  }}>menu</Typography>
-              </Box>
-          </SocialMediaLinks>
+                      color: isHomePage
+                        ? COLORS.white
+                        : isDarkMode
+                          ? DARK_COLOR.menuText
+                          : LIGHT_COLOR.menuText,
+                      fontWeight: 500
+                    }}>menu</Typography>
+                </Box>
+            </SocialMediaLinks>
 
-          <NavigationLinks className="navigation-links">
-            {showMenu && (<Box sx={{
-              borderRight: '2px solid #FFF',
-              display: 'flex',
-              flexDirection: 'column',
-              paddingRight: '12px',
-              marginTop: '16px'
-            }}>
+            <NavigationLinks className="navigation-links">
+              {showMenu && (<Box sx={{
+                borderRight: '2px solid #FFF',
+                display: 'flex',
+                flexDirection: 'column',
+                paddingRight: '12px',
+                marginTop: '16px'
+              }}>
+                {ROUTES.map(r => (
+                  !r.subMenu && !r.isNotMenu ? <HomePageLink className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
+                    : null))}
+              </Box>)}
+            </NavigationLinks>
+
+            <Switch>
               {ROUTES.map(r => (
-                !r.subMenu && !r.isNotMenu ? <HomePageLink className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
-                  : null))}
-            </Box>)}
-          </NavigationLinks>
-
-          <Switch>
-            {ROUTES.map(r => (
-              !r.isNotMenu ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
-            ))}
-          </Switch>
+                !r.isNotMenu ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
+              ))}
+            </Switch>
+          </div>
         </BrowserRouter>
       </div>
     )
@@ -185,10 +223,10 @@ function App() {
   return (
     <TWMuiThemeProvider
       children={<MyApp />}
-      darkMode={darkMode}
-      homePage={homePage}
-      setDarkMode={setDarkMode}
-      setHomePage={setHomePage} />
+      isDarkMode={isDarkMode}
+      isHomePage={isHomePage}
+      setDarkMode={setIsDarkMode}
+      setHomePage={setIsHomePage} />
   );
 }
 
