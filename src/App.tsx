@@ -19,15 +19,12 @@ import { theme, TWMuiThemeProvider } from './modules/styles/theming';
 import { FONT_FAMILY_SERIF, FONT_SIZE } from './modules/styles/variables';
 
 function App() {
+  const [imgBackground, setImgBackground] = useState('none');
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isHomePage, setIsHomePage] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
-  let imgBackground = isHomePage
-    ? isMobile
-      ? homePageBackgroundMobile
-      : homePageBackground
-    : 'none';
+  const [windowWidth, setWindowWidth] = useState(0);
 
   const SocialMediaLinks = styled(Box)`
     ${theme.breakpoints.down('xs')} {
@@ -96,7 +93,31 @@ function App() {
     }
   `;
 
+  const BackgroundImageDiv = styled('div')`
+    background-attachment: fixed;
+    background-color: ${isDarkMode
+      ? DARK_COLOR.background
+      : LIGHT_COLOR.background};
+    background-image: ${isHomePage ? `url(${imgBackground})` : 'none'};
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: ${isHomePage ? 'cover' : 'none'};
+    height: 100%;
+    width: 100%;
+  `;
+
   const MyApp = () => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+      if (windowWidth <= 480) {
+        setImgBackground(homePageBackgroundMobile);
+        setIsMobile(true);
+      } else {
+        setImgBackground(homePageBackground);
+        setIsMobile(false);
+      }
+    };
+
     useEffect(() => {
       isDarkMode ? 
         document.body.style.backgroundColor = DARK_COLOR.background : 
@@ -104,16 +125,18 @@ function App() {
       }, [])
       
     useEffect(() => {
-      isHomePage &&
-        isMobile
-          ? imgBackground = homePageBackgroundMobile
-          : imgBackground = homePageBackground
+      isHomePage 
+        ? isMobile
+          ? setImgBackground(homePageBackgroundMobile)
+          : setImgBackground(homePageBackground)
+        : setImgBackground('none')
     }, [])
 
     useEffect(() => {
-      theme.breakpoints.down('xs')
-        ? setIsMobile(true)
-        : setIsMobile(false)
+      window.addEventListener('resize', handleWindowResize, false);
+      handleWindowResize();
+
+      return () => window.removeEventListener('resize', handleWindowResize);
     }, []);
 
     return (
@@ -126,16 +149,7 @@ function App() {
         height: '100%'
       }}>
         <BrowserRouter>
-          <div className="bgcover" style={{
-            backgroundColor: isDarkMode ? DARK_COLOR.background : LIGHT_COLOR.background,
-            backgroundAttachment: 'fixed',
-            backgroundImage: isHomePage ? `url(${imgBackground})` : 'none',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: isHomePage ? 'cover' : 'none',
-            height: '100%',
-            width: '100%'
-          }}>
+          <BackgroundImageDiv className="background-div">
             <SocialMediaLinks sx={{ p: 1, m: 1 }} className="social_media-links">
               {SOCIAL_MEDIA.map(s => (
                 <Link to={{ pathname: s.path }} target="_blank">
@@ -203,8 +217,10 @@ function App() {
                 marginTop: '16px'
               }}>
                 {ROUTES.map(r => (
-                  !r.subMenu && !r.isNotMenu ? <HomePageLink className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
-                    : null))}
+                  !r.subMenu &&
+                    !r.isNotMenu
+                      ? <HomePageLink className="navigation-links_link" style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
+                      : null))}
               </Box>)}
             </NavigationLinks>
 
@@ -213,7 +229,7 @@ function App() {
                 !r.isNotMenu ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
               ))}
             </Switch>
-          </div>
+          </BackgroundImageDiv>
         </BrowserRouter>
       </div>
     )
