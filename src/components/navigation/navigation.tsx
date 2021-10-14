@@ -20,8 +20,11 @@ export interface MenuProps {
   imgBackground: string;
   isDarkMode: boolean;
   isHomePage: boolean;
-  setDarkMode: Function;
-  setHomePage: Function;
+  isMobile: boolean;
+  setImgBackground: Function;
+  setIsDarkMode: Function;
+  setIsHomePage: Function;
+  setIsMobile: Function;
   setShowMenu: Function;
   showMenu: boolean;
 }
@@ -63,8 +66,11 @@ export const Navigation = ({
   imgBackground,
   isDarkMode,
   isHomePage,
-  setDarkMode,
-  setHomePage,
+  isMobile,
+  setImgBackground,
+  setIsDarkMode,
+  setIsHomePage,
+  setIsMobile,
   setShowMenu,
   showMenu
 } : MenuProps) => {
@@ -74,8 +80,11 @@ export const Navigation = ({
       imgBackground={imgBackground}
       isDarkMode={isDarkMode}
       isHomePage={isHomePage}
-      setDarkMode={setDarkMode}
-      setHomePage={setHomePage}
+      isMobile={isMobile}
+      setImgBackground={setImgBackground}
+      setIsDarkMode={setIsDarkMode}
+      setIsHomePage={setIsHomePage}
+      setIsMobile={setIsMobile}
       setShowMenu={setShowMenu}
       showMenu={showMenu}>
       <SocialMediaLinks sx={{ p: 1, m: 1 }} className="social_media-links">
@@ -155,8 +164,11 @@ export const Navigation = ({
                     imgBackground={imgBackground}
                     isDarkMode={isDarkMode}
                     isHomePage={isHomePage}
-                    setDarkMode={setDarkMode}
-                    setHomePage={setHomePage}
+                    isMobile={isMobile}
+                    setImgBackground={setImgBackground}
+                    setIsDarkMode={setIsDarkMode}
+                    setIsHomePage={setIsHomePage}
+                    setIsMobile={setIsMobile}
                     setShowMenu={setShowMenu}
                     showMenu={showMenu}
                     style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
