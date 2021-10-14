@@ -16,7 +16,7 @@ import { SOCIAL_MEDIA } from './modules/constants/social-media';
 import { ROUTES } from './modules/constants/routes';
 import { COLORS, DARK_COLOR, LIGHT_COLOR } from './modules/styles/colors';
 import { theme, TWMuiThemeProvider } from './modules/styles/theming';
-import { FONT_FAMILY_SERIF, FONT_SIZE } from './modules/styles/variables';
+import { ELEVATION, FONT_FAMILY_SERIF, FONT_SIZE } from './modules/styles/variables';
 
 function App() {
   const [imgBackground, setImgBackground] = useState('none');
@@ -176,7 +176,10 @@ function App() {
                             ? DARK_COLOR.buttonPrimary
                             : LIGHT_COLOR.buttonPrimary,
                         fontSize: '30px',
-                        marginTop: '6px'
+                        marginTop: '6px',
+                        textShadow: isHomePage
+                          ? ELEVATION.el2
+                          : ELEVATION.el0
                       }} />}
                 </Link>))}
                 <Button color="primary" href="/contact" variant="contained" value="Hire Me!">hire me!</Button>

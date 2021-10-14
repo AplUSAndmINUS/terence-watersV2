@@ -1,5 +1,5 @@
 const createElevation = (elevation: number) => `
-  0 1px ${elevation / 2}px rgba(0,0,0,0.2)
+  0 1px ${elevation / 2}px rgba(0,0,0,0.4)
 `;
 
 export const BORDER_RADIUS = {
