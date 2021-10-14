@@ -2,7 +2,7 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import { COLORS, DARK_COLOR, LIGHT_COLOR } from '../../modules/styles/colors';
-import { FONT_FAMILY_SERIF, FONT_SIZE, FONT_WEIGHT } from '../../modules/styles/variables';
+import { BORDER_RADIUS, FONT_FAMILY_SERIF, FONT_SIZE, FONT_WEIGHT } from '../../modules/styles/variables';
 
 export interface ThemeProps {
   children: any;
@@ -61,17 +61,17 @@ export const theme = createTheme({
   overrides: {
     MuiButton: {
       root: {
-        borderRadius: '0px',
+        borderRadius: `${BORDER_RADIUS.none}px`,
         paddingLeft: '24px',
         paddingRight: '24px'
       },
       label: {
-        fontSize: '1rem'
+        fontSize: `${FONT_SIZE.button}rem`
       }
     },
     MuiButtonBase: {
       root: {
-        borderRadius: '0px'
+        borderRadius: `${BORDER_RADIUS.none}px`
       }
     }
   },

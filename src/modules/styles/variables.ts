@@ -3,6 +3,7 @@ const createElevation = (elevation: number) => `
 `;
 
 export const BORDER_RADIUS = {
+  none: 0,
   small: 2,
   base: 4,
   large: 12,
@@ -23,6 +24,7 @@ export const FONT_FAMILY_MONO = `"Roboto Mono", "Courier New", monospace`;
 
 export const FONT_SIZE = {
   body: 14,
+  button: 1,
   caption: .6,
   heading: 3.25,
   sectionTitle: 2.5,
