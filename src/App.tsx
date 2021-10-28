@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { CssBaseline } from '@material-ui/core';
+import { Box, CssBaseline, Grid, Typography } from '@material-ui/core';
+import styled from 'styled-components';
 
 import homePageBackground from './assets/images/homepage_TerenceW.jpg';
 import homePageBackgroundMobile from './assets/images/homepageMobile_TerenceW.jpg';
@@ -15,6 +16,15 @@ function App() {
   const [isMobile, setIsMobile] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
+
+  const MainTitle = styled(Grid)`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  `;
 
   const MyApp = () => {
     const handleWindowResize = () => {
@@ -71,6 +81,19 @@ function App() {
             setIsMobile={setIsMobile}
             setShowMenu={setShowMenu}
             showMenu={showMenu} />
+          <MainTitle container xs={12} md={6}>
+            <Grid item md={6} style={{ display: isMobile ? 'none' : 'block'}}>
+              &nbsp;
+            </Grid> 
+            <Grid item xs={12} md={6} spacing={6}>
+              <Typography align="center" variant="h3">
+                hi there! I'm
+              </Typography>
+              <Typography align="center" variant="h1">
+                terence waters
+              </Typography>
+            </Grid>
+          </MainTitle>
         </BrowserRouter>
       </div>
     )
