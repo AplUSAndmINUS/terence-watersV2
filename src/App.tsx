@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Children, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
@@ -195,7 +195,16 @@ function App() {
       <BrowserRouter>
         <CssBaseline />
         <ThemeProvider theme={theme}>
-          <Template>
+          <Template
+            imgBackground={imgBackground}
+            isDarkMode={isDarkMode}
+            isHomePage={isHomePage}
+            isMobile={isMobile}
+            showMenu={showMenu}
+            setIsDarkMode={setIsDarkMode}
+            setShowMenu={setShowMenu}
+          >
+            {Children}
             <Switch>
               {ROUTES.map(r => (
                 !r.isNotMenu ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />

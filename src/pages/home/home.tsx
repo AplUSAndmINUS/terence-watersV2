@@ -33,6 +33,7 @@ export const HomePage = ({
     <BackgroundImageDiv>
       <h1>I am the Home Page!</h1>
     </BackgroundImageDiv>
+  )
 };
 
-export default HomePage
+export default HomePage;

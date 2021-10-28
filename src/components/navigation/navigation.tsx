@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactChildren } from 'react';
 import {
   Box,
   Button,
@@ -17,35 +17,36 @@ import { ELEVATION, FONT_FAMILY_SERIF, FONT_SIZE, ICON_SIZE } from '../../module
 import { NavContainer, NavigationLinks, SocialMediaLinks } from './styled';
 
 export interface MenuProps {
+  children: ReactChildren;
   imgBackground: string;
   isDarkMode: boolean;
   isHomePage: boolean;
   isMobile: boolean;
-  setImgBackground: Function;
-  setIsDarkMode: Function;
-  setIsHomePage: Function;
-  setIsMobile: Function;
   setShowMenu: Function;
   showMenu: boolean;
 }
 
 const HomePageLink = styled(Link)`
   color: ${(props: MenuProps) => props.isHomePage
-  ? COLORS.white
-  : props.isDarkMode
-    ? COLORS.colorDark
-    : COLORS.colorLight};
+    ? COLORS.white
+    : props.isDarkMode
+      ? COLORS.colorDark
+      : COLORS.colorLight};
   font-family: ${FONT_FAMILY_SERIF};
   font-size: ${FONT_SIZE.link}rem;
   text-align: right;
   text-decoration: none;
   
   :hover {
-    color: ${(props: MenuProps) => props.isHomePage ? COLORS.lighterGray : COLORS.colorMainSecondary};
+    color: ${(props: MenuProps) => props.isHomePage
+      ? COLORS.lighterGray
+      : COLORS.colorMainSecondary};
   }
 
   :visited {
-    color: ${(props: MenuProps) => props.isHomePage ? COLORS.white : COLORS.colorMainSecondary};
+    color: ${(props: MenuProps) => props.isHomePage
+      ? COLORS.white
+      : COLORS.colorMainSecondary};
   }
 `;
 
@@ -54,10 +55,6 @@ export const Navigation = ({
   isDarkMode,
   isHomePage,
   isMobile,
-  setImgBackground,
-  setIsDarkMode,
-  setIsHomePage,
-  setIsMobile,
   setShowMenu,
   showMenu
 }: MenuProps) => {
@@ -142,10 +139,6 @@ export const Navigation = ({
                     isDarkMode={isDarkMode}
                     isHomePage={isHomePage}
                     isMobile={isMobile}
-                    setImgBackground={setImgBackground}
-                    setIsDarkMode={setIsDarkMode}
-                    setIsHomePage={setIsHomePage}
-                    setIsMobile={setIsMobile}
                     setShowMenu={setShowMenu}
                     showMenu={showMenu}
                     style={{ textAlign: 'right' }}
