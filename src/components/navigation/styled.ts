@@ -1,10 +1,15 @@
 import { Box } from '@material-ui/core';
 import styled from 'styled-components';
 
-import { theme } from '../../modules/styles/theming';
+export const NavContainer = styled.div`
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  display: block;
+`;
 
 export const NavigationLinks = styled(Box)`
-  ${theme.breakpoints.down('xs')} {
+  ${props => props.theme.breakpoints.down('xs')} {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -16,7 +21,7 @@ export const NavigationLinks = styled(Box)`
     flex-direction: column;
   };
 
-  ${theme.breakpoints.up('sm')} {
+  ${props => props.theme.breakpoints.up('sm')} {
     position: absolute;
     top: 64px;
     right: 32px;
@@ -27,7 +32,7 @@ export const NavigationLinks = styled(Box)`
 `;
 
 export const SocialMediaLinks = styled(Box)`
-  ${theme.breakpoints.down('xs')} {
+  ${props => props.theme.breakpoints.down('xs')} {
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -39,7 +44,7 @@ export const SocialMediaLinks = styled(Box)`
     justify-content: flex-end;
   };
 
-  ${theme.breakpoints.up('sm')} {
+  ${props => props.theme.breakpoints.up('sm')} {
     position: absolute;
     top: 24px;
     right: 16px;

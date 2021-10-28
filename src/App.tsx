@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { Box, CssBaseline, Grid, Typography } from '@material-ui/core';
-import styled from 'styled-components';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
 
 import homePageBackground from './assets/images/homepage_TerenceW.jpg';
 import homePageBackgroundMobile from './assets/images/homepageMobile_TerenceW.jpg';
-import { Navigation } from './components/navigation/navigation';
-import { DARK_COLOR, LIGHT_COLOR } from './modules/styles/colors';
-import { TWMuiThemeProvider } from './modules/styles/theming';
+import { Template } from './pages/template/template';
+import { ROUTES } from './modules/constants/routes';
+import { COLORS, DARK_COLOR, LIGHT_COLOR } from './modules/styles/colors';
+import { BORDER_RADIUS, FONT_FAMILY_SERIF, FONT_SIZE, FONT_WEIGHT } from './modules/styles/variables';
 
 function App() {
   const [imgBackground, setImgBackground] = useState('none');
@@ -17,97 +18,194 @@ function App() {
   const [showMenu, setShowMenu] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
 
-  const MainTitle = styled(Grid)`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  `;
-
-  const MyApp = () => {
-    const handleWindowResize = () => {
-      setWindowWidth(window.innerWidth);
-      if (windowWidth <= 480) {
-        setImgBackground(homePageBackgroundMobile);
-        setIsMobile(true);
-      } else {
-        setImgBackground(homePageBackground);
-        setIsMobile(false);
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 480,
+        md: 768,
+        lg: 960,
+        xl: 1440
       }
-    };
+    },
+    palette: {
+      type: isDarkMode ? 'dark' : 'light',
+      primary: {
+        contrastText: COLORS.colorContrastTextPrimary,
+        dark: COLORS.colorDark,
+        light: COLORS.colorLight,
+        main: COLORS.colorMainPrimary
+      },
+      secondary: {
+        contrastText: COLORS.colorContrastTextSecondary,
+        main: COLORS.colorMainSecondary
+      },
+      error: {
+        main: COLORS.red
+      },
+      success: {
+        main: COLORS.green
+      },
+      warning: {
+        main: COLORS.yellow
+      },
+      info: {
+        main: COLORS.lightBlue
+      },
+      text: {
+        primary: isHomePage
+          ? COLORS.white
+          : isDarkMode
+            ? DARK_COLOR.text
+            : LIGHT_COLOR.text,
+        secondary: isDarkMode ? DARK_COLOR.text : LIGHT_COLOR.text,
+        disabled: COLORS.lightGray
+      }
+    },
+    overrides: {
+      MuiButton: {
+        root: {
+          borderRadius: `${BORDER_RADIUS.none}px`,
+          paddingLeft: '24px',
+          paddingRight: '24px'
+        },
+        label: {
+          fontSize: `${FONT_SIZE.button}rem`
+        }
+      },
+      MuiButtonBase: {
+        root: {
+          borderRadius: `${BORDER_RADIUS.none}px`
+        }
+      }
+    },
+    typography: {
+      fontFamily: FONT_FAMILY_SERIF,
+      fontSize: FONT_SIZE.body,
+      fontWeightBold: FONT_WEIGHT.bold,
+      fontWeightMedium: FONT_WEIGHT.medium,
+      fontWeightRegular: FONT_WEIGHT.regular,
+      fontWeightLight: FONT_WEIGHT.light,
+      button: {
+        color: COLORS.white,
+        textTransform: 'lowercase',
+        fontFamily: 'Roboto, sans-serif'
+      },
+      caption: {
+        color: isDarkMode ? DARK_COLOR.color : LIGHT_COLOR.color,
+        fontSize: `${FONT_SIZE.caption}rem`,
+        fontWeight: FONT_WEIGHT.regular,
+        fontFamily: 'Roboto, sans-serif'
+      },
+      h1: {
+        color: isDarkMode ? COLORS.white : COLORS.black,
+        fontSize: `${FONT_SIZE.title}rem`,
+        fontWeight: FONT_WEIGHT.light,
+        fontFamily: FONT_FAMILY_SERIF,
+        lineHeight: '48px',
+        textTransform: 'lowercase'
+      },
+      h2: {
+        color: isDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
+        fontSize: `${FONT_SIZE.heading}rem`,
+        fontWeight: FONT_WEIGHT.bold,
+        fontFamily: `"Proxima Nova", sans-serif`,
+        letterSpacing: '-0.2px',
+        lineHeight: '40px',
+        textTransform: 'lowercase'
+      },
+      h3: {
+        color: isDarkMode ? DARK_COLOR.largeHeading : LIGHT_COLOR.largeHeading,
+        fontSize: `${FONT_SIZE.sectionTitle}rem`,
+        fontWeight: FONT_WEIGHT.regular,
+        fontFamily: 'Roboto, sans-serif',
+        textTransform: 'lowercase'
+      },
+      h4: {
+        color: isDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
+        fontSize: `${FONT_SIZE.subheading}rem`,
+        fontWeight: FONT_WEIGHT.regular,
+        fontFamily: FONT_FAMILY_SERIF,
+        textTransform: 'lowercase'
+      },
+      h5: {
+        color: isDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
+        fontSize: `${FONT_SIZE.tertiary}rem`,
+        fontWeight: FONT_WEIGHT.light,
+        fontFamily: FONT_FAMILY_SERIF,
+        textTransform: 'lowercase'
+      },
+      h6: {
+        color: isDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
+        fontSize: `${FONT_SIZE.quaternary}rem`,
+        textTransform: 'uppercase',
+        fontFamily: FONT_FAMILY_SERIF
+      },
+      subtitle1: {
+        color: isDarkMode ? DARK_COLOR.pageHeading : LIGHT_COLOR.pageHeading,
+        fontSize: `${FONT_SIZE.subheading}rem`,
+        fontWeight: FONT_WEIGHT.regular,
+        fontFamily: FONT_FAMILY_SERIF,
+        textTransform: 'lowercase'
+      },
+      subtitle2: {
+        color: isDarkMode ? DARK_COLOR.subHeading : LIGHT_COLOR.subHeading,
+        fontSize: `${FONT_SIZE.tertiary}rem`,
+        fontWeight: FONT_WEIGHT.light,
+        fontFamily: FONT_FAMILY_SERIF,
+        textTransform: 'lowercase'
+      }
+    }
+  });
 
-    useEffect(() => {
-      isDarkMode ? 
-        document.body.style.backgroundColor = DARK_COLOR.background : 
-        document.body.style.backgroundColor = LIGHT_COLOR.background
-      }, [])
-      
-    useEffect(() => {
-      isHomePage 
-        ? isMobile
-          ? setImgBackground(homePageBackgroundMobile)
-          : setImgBackground(homePageBackground)
-        : setImgBackground('none')
-    }, [])
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
+    if (windowWidth <= 480) {
+      setImgBackground(homePageBackgroundMobile);
+      setIsMobile(true);
+    } else {
+      setImgBackground(homePageBackground);
+      setIsMobile(false);
+    }
+  };
 
-    useEffect(() => {
-      window.addEventListener('resize', handleWindowResize, false);
-      handleWindowResize();
+  useEffect(() => {
+    isDarkMode ?
+      document.body.style.backgroundColor = DARK_COLOR.background :
+      document.body.style.backgroundColor = LIGHT_COLOR.background
+  }, [isDarkMode]);
+    
+  useEffect(() => {
+    isHomePage
+      ? isMobile
+        ? setImgBackground(homePageBackgroundMobile)
+        : setImgBackground(homePageBackground)
+      : setImgBackground('none')
+  }, [isHomePage, isMobile]);
 
-      return () => window.removeEventListener('resize', handleWindowResize);
-    }, []);
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize, false);
+    handleWindowResize();
 
-    return (
-      <div className="App" style={{
-        display: 'block',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%'
-      }}>
-        <BrowserRouter>
-          <CssBaseline />
-          <Navigation
-            imgBackground={imgBackground}
-            isDarkMode={isDarkMode}
-            isHomePage={isHomePage}
-            isMobile={isMobile}
-            setImgBackground={setImgBackground}
-            setIsDarkMode={setIsDarkMode}
-            setIsHomePage={setIsHomePage}
-            setIsMobile={setIsMobile}
-            setShowMenu={setShowMenu}
-            showMenu={showMenu} />
-          <MainTitle container xs={12} md={6}>
-            <Grid item md={6} style={{ display: isMobile ? 'none' : 'block'}}>
-              &nbsp;
-            </Grid> 
-            <Grid item xs={12} md={6} spacing={6}>
-              <Typography align="center" variant="h3">
-                hi there! I'm
-              </Typography>
-              <Typography align="center" variant="h1">
-                terence waters
-              </Typography>
-            </Grid>
-          </MainTitle>
-        </BrowserRouter>
-      </div>
-    )
-  }
+    return () => window.removeEventListener('resize', handleWindowResize);
+  });
 
-  // do I need to change props to go into MyApp for Dark Mode & Home Page?
   return (
-    <TWMuiThemeProvider
-      children={<MyApp />}
-      isDarkMode={isDarkMode}
-      isHomePage={isHomePage}
-      setDarkMode={setIsDarkMode}
-      setHomePage={setIsHomePage} />
-  );
-}
+    <div className="App">
+      <BrowserRouter>
+        <CssBaseline />
+        <ThemeProvider theme={theme}>
+          <Template>
+            <Switch>
+              {ROUTES.map(r => (
+                !r.isNotMenu ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
+              ))}
+            </Switch>
+          </Template>
+        </ThemeProvider>
+      </BrowserRouter>
+    </div>
+  )
+};
 
 export default App;

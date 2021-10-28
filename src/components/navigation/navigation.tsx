@@ -7,14 +7,14 @@ import {
   Typography
 } from '@material-ui/core';
 import { Menu, MenuOpen } from '@material-ui/icons';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { SOCIAL_MEDIA } from '../../modules/constants/social-media';
 import { ROUTES } from '../../modules/constants/routes';
 import { COLORS, DARK_COLOR, LIGHT_COLOR } from '../../modules/styles/colors';
 import { ELEVATION, FONT_FAMILY_SERIF, FONT_SIZE, ICON_SIZE } from '../../modules/styles/variables';
-import { NavigationLinks, SocialMediaLinks } from './styled';
+import { NavContainer, NavigationLinks, SocialMediaLinks } from './styled';
 
 export interface MenuProps {
   imgBackground: string;
@@ -28,19 +28,6 @@ export interface MenuProps {
   setShowMenu: Function;
   showMenu: boolean;
 }
-
-const BackgroundImageDiv = styled('div')`
-  background-attachment: fixed;
-  background-color: ${(props: MenuProps) => props.isDarkMode
-    ? DARK_COLOR.background
-    : LIGHT_COLOR.background};
-  background-image: ${(props: MenuProps) => props.isHomePage ? `url(${props.imgBackground})` : 'none'};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: ${(props: MenuProps) => props.isHomePage ? 'cover' : 'none'};
-  height: 100%;
-  width: 100%;
-`;
 
 const HomePageLink = styled(Link)`
   color: ${(props: MenuProps) => props.isHomePage
@@ -73,20 +60,10 @@ export const Navigation = ({
   setIsMobile,
   setShowMenu,
   showMenu
-} : MenuProps) => {
+}: MenuProps) => {
+
   return (
-    <BackgroundImageDiv
-      className="background-div"
-      imgBackground={imgBackground}
-      isDarkMode={isDarkMode}
-      isHomePage={isHomePage}
-      isMobile={isMobile}
-      setImgBackground={setImgBackground}
-      setIsDarkMode={setIsDarkMode}
-      setIsHomePage={setIsHomePage}
-      setIsMobile={setIsMobile}
-      setShowMenu={setShowMenu}
-      showMenu={showMenu}>
+    <NavContainer>
       <SocialMediaLinks sx={{ p: 1, m: 1 }} className="social_media-links">
         {SOCIAL_MEDIA.map(s => (
         <Link to={{ pathname: s.path }} target="_blank">
@@ -171,17 +148,12 @@ export const Navigation = ({
                     setIsMobile={setIsMobile}
                     setShowMenu={setShowMenu}
                     showMenu={showMenu}
-                    style={{ textAlign: 'right' }} to={r.path}>{r.componentName}</HomePageLink>
+                    style={{ textAlign: 'right' }}
+                    to={r.path}>{r.componentName}</HomePageLink>
                 : null))}
         </Box>)}
       </NavigationLinks>
-
-      <Switch>
-        {ROUTES.map(r => (
-          !r.isNotMenu ? <Route exact path={r.path} component={r.component} /> : <Route component={r.component} />
-        ))}
-      </Switch>
-    </BackgroundImageDiv>
+    </NavContainer>
   )
 };
 

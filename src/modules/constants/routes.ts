@@ -1,9 +1,9 @@
 import About from '../../pages/about/about';
-import App from '../../App';
 import Blog from '../../pages/blog/blog';
 import Contact from '../../pages/contact/contact';
 import Events from '../../pages/events/events';
 import GitHub from '../../pages/github/github';
+import HomePage from '../../pages/home/home';
 import Music from '../../pages/music/music';
 import NotFound from '../../pages/404/404';
 import Portfolio from '../../pages/portfolio/portfolio';
@@ -19,7 +19,7 @@ interface Routes {
 
 export const ROUTES: Routes[] = [
   {
-    component: App,
+    component: HomePage,
     componentName: 'home',
     path: '/'
   },
